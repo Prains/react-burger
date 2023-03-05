@@ -1,0 +1,10 @@
+@use "../../utils/mixins.scss" as m;
+
+.box {
+  @include m.flex();
+  gap: 8px;
+  margin: 0;
+}
+.yes {
+  color: #8585AD;
+}

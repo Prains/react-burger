@@ -1,0 +1,21 @@
+@use "../../utils/mixins.scss" as m;
+
+.header {
+  @include m.width(1920px);
+  margin: 40px auto;
+  background: #1C1C21;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  .nav {
+    @include m.flex();
+    max-width: 1280px;
+    margin: 0 auto;
+    div               {
+      @include m.flex();
+    }
+  }
+  .logo {
+    margin-left: auto;
+    margin-right: 288px;
+  }
+}

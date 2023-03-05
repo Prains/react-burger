@@ -1,0 +1,13 @@
+@use "../../utils/mixins.scss" as m;
+
+.burgeringredients {
+  @include m.width(600px);
+  @include m.flex(start);
+  flex-direction: column;
+  .items {
+    max-height: 756px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+}

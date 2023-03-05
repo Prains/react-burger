@@ -1,0 +1,18 @@
+@use "../../utils/mixins.scss" as m;
+
+
+
+.item {
+    @include m.flex();
+    @include m.width(272px);
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    .text {
+        @include m.flex();
+        gap: 9px;
+    }
+    .image {
+        position: relative;
+    }
+}
