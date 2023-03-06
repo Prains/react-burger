@@ -1,0 +1,8 @@
+@use "../../utils/mixins.scss" as m;
+
+.page {
+  @include m.width(1280px);
+  @include m.flex(start);
+  gap: 40px;
+  margin: 0 auto;
+}
