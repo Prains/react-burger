@@ -1,6 +1,7 @@
 import BurgerConstructor from "../../components/BurgerConstructor/BurgerConstructor";
 import BurgerIngredients from "../../components/BurgerIngredients/BurgerIngredients";
 import styles from "./Mainpage.module.scss";
+import PropTypes from 'prop-types';
 
 const Mainpage = (props) => {
 
@@ -11,5 +12,10 @@ const Mainpage = (props) => {
     </main>
   );
 };
+
+Mainpage.propTypes = {
+  BurgerIngredientsData: PropTypes.array
+}
+
 
 export default Mainpage;

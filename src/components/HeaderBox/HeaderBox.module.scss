@@ -4,6 +4,8 @@
   @include m.flex();
   gap: 8px;
   margin: 0;
+  text-decoration: none;
+  color: unset;
 }
 .yes {
   color: #8585AD;

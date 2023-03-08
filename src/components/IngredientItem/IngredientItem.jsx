@@ -4,22 +4,36 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./IngredientItem.module.scss";
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import ModalWithIngredient from "../ModalWithIngredient/ModalWithIngredient";
+import PropTypes from 'prop-types';
+
 
 const IngredientItem = (props) => {
-  let [count, setCounter] = useState(0);
+  const [count, setCounter] = useState(0);
+  const [isModalShown, setModalShown] = useState(false)
+  const modal = document.querySelector("#modal");
+
 
   return (
-    <div className={styles.item} onClick={() => setCounter(++count)}>
-      <div className={styles.image}>
-        <img src={props.data.image} alt={props.data.name} />
-        {count > 0 && <Counter count={count} size="default" />}
+    <>
+      <div className={styles.item} onClick={() => setModalShown(true)}>
+        <div className={styles.image}>
+          <img src={props.data.image} alt={props.data.name} />
+          {count > 0 && <Counter count={count} size="default" />}
+        </div>
+        <p className={`text text_type_digits-default ${styles.text}`}>
+          {props.data.price} <CurrencyIcon />
+        </p>
+        <p className="text text_type_main-default">{props.data.name}</p>
       </div>
-      <p className={`text text_type_digits-default ${styles.text}`}>
-        {props.data.price} <CurrencyIcon />
-      </p>
-      <p className="text text_type_main-default">{props.data.name}</p>
-    </div>
+      {isModalShown && createPortal(<ModalWithIngredient close={setModalShown} {...props}/>, modal)}
+    </>
   );
 };
+
+IngredientItem.propTypes = {
+  data: PropTypes.object
+}
 
 export default IngredientItem;

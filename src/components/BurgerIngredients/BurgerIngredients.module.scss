@@ -7,7 +7,7 @@
   .items {
     max-height: 756px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-behavior: smooth;
   }
 }

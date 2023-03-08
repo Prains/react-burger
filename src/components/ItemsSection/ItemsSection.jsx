@@ -1,5 +1,6 @@
 import IngredientItem from "../IngredientItem/IngredientItem.jsx";
 import styles from './ItemsSection.module.scss'
+import PropTypes from 'prop-types';
 
 const ItemsSection = (props) => {
   return (
@@ -12,5 +13,9 @@ const ItemsSection = (props) => {
     </section>
   );
 };
+
+ItemsSection.propTypes = {
+  data: PropTypes.array
+}
 
 export default ItemsSection;

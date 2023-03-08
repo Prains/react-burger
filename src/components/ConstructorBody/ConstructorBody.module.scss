@@ -1,9 +1,15 @@
 @use "../../utils/mixins.scss" as m;
 
 .content {
+  @include m.width(600px);
   @include m.flex(start, start);
   flex-direction: column;
   gap: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
+  .item {
+    @include m.width(568px);
+    @include m.flex();
+    gap: 8px;
+  }
 }

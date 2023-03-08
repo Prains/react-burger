@@ -1,0 +1,7 @@
+@use "../../utils/mixins.scss" as m;
+
+.modalbox {
+    @include m.width(520px);
+    text-align: center;
+    margin-top: 16px;
+}

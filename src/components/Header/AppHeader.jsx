@@ -16,15 +16,15 @@ const Header = () => {
             <BurgerIcon />
             Конструктор
           </HeaderBox>
-          <HeaderBox inactive='yes'>
-            <ListIcon type="secondary"/>
+          <HeaderBox inactive>
+            <ListIcon type="secondary" />
             Лента заказов
           </HeaderBox>
         </div>
         <div className={styles.logo}>
           <Logo />
         </div>
-        <HeaderBox inactive='yes'>
+        <HeaderBox inactive>
           <ProfileIcon type="secondary" />
           Личный кабинет
         </HeaderBox>
