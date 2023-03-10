@@ -4,6 +4,7 @@ import styles from "./BurgerIngredients.module.scss";
 import PropTypes from 'prop-types';
 
 const BurgerIngredients = (props) => {
+
   const bunsData = props.data.filter((bun) => bun.type === "bun");
   const sauceData = props.data.filter((sauce) => sauce.type === "sauce");
   const flavoursData = props.data.filter((flavour) => flavour.type === "main");
@@ -24,6 +25,6 @@ const BurgerIngredients = (props) => {
   );
 };
 BurgerIngredients.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 export default BurgerIngredients;

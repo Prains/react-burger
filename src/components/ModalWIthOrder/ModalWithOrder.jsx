@@ -24,7 +24,7 @@ const ModalWithOrder = (props) => {
 };
 
 ModalWithOrder.propTypes = {
-  close: PropTypes.func,
+  close: PropTypes.func.isRequired,
   header: PropTypes.any,
 };
 

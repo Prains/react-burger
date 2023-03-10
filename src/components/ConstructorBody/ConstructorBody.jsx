@@ -3,6 +3,8 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
+
 
 const ConstructorBody = (props) => {
   return (
@@ -35,5 +37,9 @@ const ConstructorBody = (props) => {
     </div>
   );
 };
+
+ConstructorBody.propTypes = {
+  img: PropTypes.string.isRequired,
+}
 
 export default ConstructorBody;

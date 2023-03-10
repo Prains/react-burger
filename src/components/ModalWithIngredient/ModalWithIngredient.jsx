@@ -18,7 +18,7 @@ const ModalWithIngredient = (props) => {
 };
 
 ModalWithIngredient.propTypes = {
-  close: PropTypes.func
+  close: PropTypes.func.isRequired,
 }
 
 export default ModalWithIngredient;

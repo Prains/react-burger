@@ -4,7 +4,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./IngredientItem.module.scss";
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import ModalWithIngredient from "../ModalWithIngredient/ModalWithIngredient";
 import PropTypes from 'prop-types';
 
@@ -12,7 +11,7 @@ import PropTypes from 'prop-types';
 const IngredientItem = (props) => {
   const [count, setCounter] = useState(0);
   const [isModalShown, setModalShown] = useState(false)
-  const modal = document.querySelector("#modal");
+
 
 
   return (
@@ -27,7 +26,7 @@ const IngredientItem = (props) => {
         </p>
         <p className="text text_type_main-default">{props.data.name}</p>
       </div>
-      {isModalShown && createPortal(<ModalWithIngredient close={setModalShown} {...props}/>, modal)}
+      {isModalShown && <ModalWithIngredient close={setModalShown} {...props}/>}
     </>
   );
 };

@@ -3,12 +3,12 @@ import ModalWithOrder from "../ModalWIthOrder/ModalWithOrder";
 import styles from "./BurgerConstructor.module.scss";
 import { ConstructorElement, Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
-import { createPortal } from "react-dom";
+
 
 
 const BurgerConstructor = () => {
   const [orderVisibility, setOrderVisibility] = useState(false);
-  const modal = document.querySelector("#modal");
+
 
 
   const img = "https://code.s3.yandex.net/react/code/bun-02.png";
@@ -35,7 +35,7 @@ const BurgerConstructor = () => {
           Оформить заказ
         </Button>
       </div>
-      {orderVisibility && createPortal(<ModalWithOrder close={setOrderVisibility}/>, modal)}
+      {orderVisibility && <ModalWithOrder close={setOrderVisibility}/>}
 
     </section>
   );

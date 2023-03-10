@@ -10,8 +10,7 @@ const ModalDescriptionItem = (props) => {
 }
  
 ModalDescriptionItem.propTypes = {
-  data: PropTypes.object,
-  children: PropTypes.any
+  data: PropTypes.number.isRequired
 }
 
 export default ModalDescriptionItem;

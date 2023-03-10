@@ -15,7 +15,7 @@ const ItemsSection = (props) => {
 };
 
 ItemsSection.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default ItemsSection;
