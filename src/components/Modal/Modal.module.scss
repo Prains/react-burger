@@ -1,0 +1,9 @@
+@use "../../utils/mixins.scss" as m;
+
+.modal {
+  @include m.width(720px);
+  @include m.flex();
+  flex-direction: column;
+  background: #1c1c21;
+  padding-bottom: 60px;
+}

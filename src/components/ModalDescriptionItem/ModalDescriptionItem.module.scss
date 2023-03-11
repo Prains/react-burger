@@ -1,0 +1,8 @@
+@use "../../utils/mixins.scss" as m;
+
+
+.text {
+    @include m.flex();
+    flex-direction: column;
+    gap: 8px;
+}

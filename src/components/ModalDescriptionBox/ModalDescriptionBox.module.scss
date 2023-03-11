@@ -1,0 +1,7 @@
+@use "../../utils/mixins.scss" as m;
+
+
+.box {
+    @include m.flex(center, space-between);
+    margin-top: 32px;
+}
