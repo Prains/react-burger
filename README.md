@@ -1,1 +1,1 @@
-react-burger 
+React-Burger. Проект Яндекс.Практикум по изучению React, Redux, TypeScript. Проект в разработке
