@@ -5,7 +5,7 @@ import {
 import styles from "./IngredientItem.module.scss";
 import { useState } from "react";
 import ModalWithIngredient from "../ModalWithIngredient/ModalWithIngredient";
-import PropTypes from 'prop-types';
+import { ingredientPropType } from "../../utils/types";
 
 
 const IngredientItem = (props) => {
@@ -32,7 +32,7 @@ const IngredientItem = (props) => {
 };
 
 IngredientItem.propTypes = {
-  data: PropTypes.object
+  data: ingredientPropType
 }
 
 export default IngredientItem;

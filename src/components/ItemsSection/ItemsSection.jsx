@@ -1,6 +1,7 @@
 import IngredientItem from "../IngredientItem/IngredientItem.jsx";
 import styles from './ItemsSection.module.scss'
 import PropTypes from 'prop-types';
+import { ingredientPropType } from "../../utils/types";
 
 const ItemsSection = (props) => {
   return (
@@ -15,7 +16,7 @@ const ItemsSection = (props) => {
 };
 
 ItemsSection.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object)
+  data: PropTypes.arrayOf(ingredientPropType).isRequired,
 }
 
 export default ItemsSection;
