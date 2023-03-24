@@ -3,43 +3,29 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-
-const ConstructorBody = (props) => {
+const ConstructorBody = ({ ingredientsData }) => {
   return (
     <div className={styles.content}>
-      <div className={styles.item}>
-        <DragIcon />
-        <ConstructorElement
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail={props.img}
-        />
-      </div>
-      <div className={styles.item}>
-        <DragIcon />
-        <ConstructorElement
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail={props.img}
-        />
-      </div>
-      <div className={styles.item}>
-        <DragIcon />
-        <ConstructorElement
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail={props.img}
-        />
-      </div>
-      
+      {ingredientsData.map((ingredient) => {
+        return (
+          <div className={styles.item} key={ingredient._id}>
+            <DragIcon />
+            <ConstructorElement
+              text="Краторная булка N-200i (низ)"
+              price={ingredient.price}
+              thumbnail={ingredient.image}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 ConstructorBody.propTypes = {
-  img: PropTypes.string.isRequired,
-}
+  ingredientsData: PropTypes.array.isRequired,
+};
 
 export default ConstructorBody;

@@ -1,13 +1,19 @@
 import ItemsSection from "../ItemsSection/ItemsSection";
 import Tabs from "../Tabs/Tabs";
 import styles from "./BurgerIngredients.module.scss";
-import PropTypes from "prop-types";
-import { ingredientPropType } from "../../utils/types";
+import { BurgerIngredientsContext } from "../../services/Context";
+import { useContext } from "react";
 
-const BurgerIngredients = (props) => {
-  const bunsData = props.data.filter((bun) => bun.type === "bun");
-  const sauceData = props.data.filter((sauce) => sauce.type === "sauce");
-  const flavoursData = props.data.filter((flavour) => flavour.type === "main");
+const BurgerIngredients = () => {
+  const burgerIngredientsData = useContext(BurgerIngredientsContext);
+
+  const bunsData = burgerIngredientsData.filter((bun) => bun.type === "bun");
+  const sauceData = burgerIngredientsData.filter(
+    (sauce) => sauce.type === "sauce"
+  );
+  const flavoursData = burgerIngredientsData.filter(
+    (flavour) => flavour.type === "main"
+  );
 
   return (
     <section className={styles.burgeringredients}>
@@ -29,8 +35,5 @@ const BurgerIngredients = (props) => {
       </section>
     </section>
   );
-};
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired,
 };
 export default BurgerIngredients;
