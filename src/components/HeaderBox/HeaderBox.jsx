@@ -1,5 +1,5 @@
 import styles from "./HeaderBox.module.scss";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 const HeaderBox = (props) => {
   return (
     <a
@@ -14,8 +14,7 @@ const HeaderBox = (props) => {
 };
 
 HeaderBox.propTypes = {
-  inactive: PropTypes.bool
-}
-
+  inactive: PropTypes.bool,
+};
 
 export default HeaderBox;

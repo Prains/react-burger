@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const ModalHeader = (props) => {
   return (
     <p className={`text text_type_main-large ${styles.header}`}>
-      {props.header ? props.header : <div></div>}
+      {props.header ? props.header : <span></span>}
       <CloseIcon onClick={() => props.close(false)} />
     </p>
   );
