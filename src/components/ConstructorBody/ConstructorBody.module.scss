@@ -7,9 +7,4 @@
   gap: 10px;
   overflow-y: auto;
   scroll-behavior: smooth;
-  .item {
-    @include m.width(568px);
-    @include m.flex();
-    gap: 8px;
-  }
 }

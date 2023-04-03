@@ -2,42 +2,39 @@ import Modal from "../Modal/Modal";
 import styles from "./ModalWithOrder.module.scss";
 import done from "../../images/graphics.svg";
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
-import {
-  ApiClassContext,
-  BurgerIngredientsContext,
-} from "../../services/Context";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import api from "../../utils/api";
+import { setOrder } from "../../services/reducers/Order";
 
 const ModalWithOrder = ({ close }) => {
-  const api = useContext(ApiClassContext);
-  const burgerIngredients = useContext(BurgerIngredientsContext);
-  const [orderNumber, setOrderNumber] = useState(null);
+  const { ingredients } = useSelector((state) => state.ingredients);
+  const { order } = useSelector((state) => state.order);
+  const dispatch = useDispatch();
 
-  const bunsData = burgerIngredients.filter((bun) => bun.type === "bun");
-  const ingredientsData = burgerIngredients.filter(
+  const bunsData = ingredients.filter((bun) => bun.type === "bun");
+  const ingredientsData = ingredients.filter(
     (ingredient) => ingredient.type !== "bun"
   );
 
   const bunsId = bunsData[0]._id;
 
-  const ingredientsDataId = [bunsId];
-
-  ingredientsData.forEach((ingredient) =>
-    ingredientsDataId.push(ingredient._id)
-  );
-  ingredientsDataId.push(bunsId);
-
   useEffect(() => {
+    const ingredientsDataId = [
+      bunsId,
+      ...ingredientsData.map((ingredient) => ingredient._id),
+      bunsId,
+    ];
     api
       .postOrderData(ingredientsDataId)
-      .then((res) => setOrderNumber(res.order.number));
-  }, []);
+      .then((res) => dispatch(setOrder(res.order.number)));
+  }, [api]);
 
   return (
     <Modal close={close}>
       <div className={styles.box}>
         <p className={`text text_type_digits-large mt-10 mb-8 ${styles.glow}`}>
-          {orderNumber}
+          {order}
         </p>
         <p className="text text_type_main-medium mb-15">идентификатор заказа</p>
         <img src={done} alt="" className="mb-15" />

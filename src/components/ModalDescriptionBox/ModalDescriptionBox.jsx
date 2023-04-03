@@ -2,17 +2,17 @@ import ModalDescriptionItem from "../ModalDescriptionItem/ModalDescriptionItem";
 import styles from "./ModalDescriptionBox.module.scss";
 import PropTypes from "prop-types";
 
-const ModalDescriptionBox = (props) => {
+const ModalDescriptionBox = ({ data: { calories, proteins, fat, carbohydrates } }) => {
   return (
     <div className={styles.box}>
-      <ModalDescriptionItem data={props.data.calories}>
+      <ModalDescriptionItem data={calories}>
         Калории, ккал
       </ModalDescriptionItem>
-      <ModalDescriptionItem data={props.data.proteins}>
+      <ModalDescriptionItem data={proteins}>
         Белки, г
       </ModalDescriptionItem>
-      <ModalDescriptionItem data={props.data.fat}>Жиры, г</ModalDescriptionItem>
-      <ModalDescriptionItem data={props.data.carbohydrates}>
+      <ModalDescriptionItem data={fat}>Жиры, г</ModalDescriptionItem>
+      <ModalDescriptionItem data={carbohydrates}>
         Углеводы, г
       </ModalDescriptionItem>
     </div>
@@ -29,3 +29,4 @@ ModalDescriptionBox.propTypes = {
 };
 
 export default ModalDescriptionBox;
+

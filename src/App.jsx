@@ -1,36 +1,35 @@
+import { useState, useEffect } from "react";
 import AppHeader from "./components/Header/AppHeader";
 import Mainpage from "./pages/Mainapge/Mainpage";
-import { useEffect, useState } from "react";
-import Api from "./utils/api";
-import { BurgerIngredientsContext, ApiClassContext } from "./services/Context";
+import { useDispatch } from "react-redux";
+import { setIngredients } from "./services/reducers/Ingredients";
+import api from "./utils/api";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
-  const baseUrl = "https://norma.nomoreparties.space/api";
-  const [BurgerIngredients, setBurgerIngredients] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const api = new Api(baseUrl);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     api.getIngredientsData().then((res) => {
-      setBurgerIngredients(res.data);
+      dispatch(setIngredients(res.data));
+      setIsLoading(false);
     });
   }, []);
 
+  if (isLoading) {
+    return <h1>Page is still loading....</h1>;
+  }
+
   return (
-    <>
-      {BurgerIngredients ? (
-        <ApiClassContext.Provider value={api}>
-        <BurgerIngredientsContext.Provider value={BurgerIngredients}>
-          <div className="App">
-            <AppHeader />
-            <Mainpage/>
-          </div>
-        </BurgerIngredientsContext.Provider>
-        </ApiClassContext.Provider>
-      ) : (
-        <h1>Page is still loading....</h1>
-      )}
-    </>
+    <DndProvider backend={HTML5Backend}>
+      <div className="App">
+        <AppHeader />
+        <Mainpage />
+      </div>
+    </DndProvider>
   );
 }
 

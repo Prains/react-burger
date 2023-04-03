@@ -1,4 +1,6 @@
-export default class Api {
+import { baseUrl } from "./types";
+
+class Api {
   constructor(url) {
     this._url = url;
   }
@@ -25,3 +27,6 @@ export default class Api {
     }).then((res) => this._checkServerResponce(res));
   }
 }
+
+const api = new Api(baseUrl);
+export default api

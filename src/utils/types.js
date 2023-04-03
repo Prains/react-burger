@@ -13,3 +13,6 @@ export const ingredientPropType = PropTypes.shape({
      _id: PropTypes.string.isRequired,
      type: PropTypes.oneOf(["bun", "main", "sauce"]).isRequired,
 });
+
+
+export const baseUrl = "https://norma.nomoreparties.space/api";
