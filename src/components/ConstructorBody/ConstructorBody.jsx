@@ -3,20 +3,19 @@ import PropTypes from "prop-types";
 import ConstructorItem from "./ConstructorItem/ConstructorItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setBurger } from "../../services/reducers/Burger";
+import { v4 as uuidv4 } from "uuid";
 
 const ConstructorBody = ({ ingredientsData }) => {
   const { burger } = useSelector((state) => state.burger);
   const dispatch = useDispatch();
-  const moveCardHandler = (dragIndex, hoverIndex) => {
-    const dragItem = burger[dragIndex];
-
-    if (dragItem) {
-      const coppiedStateArray = [...burger];
-      const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
-
-      coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-
-      dispatch(setBurger(coppiedStateArray));
+  const moveCard = (dragIndex, hoverIndex, key) => {
+    const dragCard = burger.filter((ingredient) => ingredient.uuid === key);
+    console.log(dragCard);
+    if (dragCard) {
+      const newCards = [...burger];
+      newCards.splice(dragIndex, 1);
+      newCards.splice(hoverIndex, 0, ...dragCard);
+      dispatch(setBurger(newCards));
     }
   };
 
@@ -29,9 +28,10 @@ const ConstructorBody = ({ ingredientsData }) => {
         return (
           <ConstructorItem
             ingredient={ingredient}
-            key={index}
+            key={ingredient.uuid}
+            uuid={ingredient.uuid}
             index={index}
-            moveCardHandler={moveCardHandler}
+            moveCardHandler={moveCard}
           />
         );
       })}
