@@ -10,6 +10,7 @@ import { useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setBurger } from "../../../services/reducers/Burger";
+import PropTypes from 'prop-types'
 
 const ConstructorItem = ({ ingredient, index, moveCardHandler, uuid }) => {
   const { burger } = useSelector((state) => state.burger);
@@ -88,6 +89,13 @@ const ConstructorItem = ({ ingredient, index, moveCardHandler, uuid }) => {
       />
     </div>
   );
+};
+
+ConstructorItem.propTypes = {
+  ingredient: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  moveCardHandler: PropTypes.func.isRequired,
+  uuid: PropTypes.string.isRequired,
 };
 
 export default ConstructorItem;

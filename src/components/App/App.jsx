@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import AppHeader from "./components/Header/AppHeader";
-import Mainpage from "./pages/Mainapge/Mainpage";
+import AppHeader from "../Header/AppHeader";
+import Mainpage from "../../pages/Mainapge/Mainpage";
 import { useDispatch } from "react-redux";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { fetchIngredients } from "./services/actions";
+import { fetchIngredients } from "../../services/actions";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

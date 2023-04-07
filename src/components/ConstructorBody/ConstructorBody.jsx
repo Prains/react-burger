@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ConstructorItem from "./ConstructorItem/ConstructorItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setBurger } from "../../services/reducers/Burger";
-import { v4 as uuidv4 } from "uuid";
 
 const ConstructorBody = ({ ingredientsData }) => {
   const { burger } = useSelector((state) => state.burger);

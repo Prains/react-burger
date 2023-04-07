@@ -33,7 +33,7 @@ const ModalWithOrder = ({ close }) => {
           {order ? order.order.number : ""}
         </p>
         <p className="text text_type_main-medium mb-15">идентификатор заказа</p>
-        <img src={done} alt="" className="mb-15" />
+        <img src={done} alt="изображение загрузки" className="mb-15" />
         <p className="text text_type_main-default mb-2">
           Ваш заказ начали готовить
         </p>

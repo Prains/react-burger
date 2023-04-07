@@ -12,21 +12,27 @@ class Api {
   }
   getIngredientsData() {
     return fetch(`${this._url}/ingredients`).then((res) =>
-      this._checkServerResponce(res)
+      this._checkServerResponce(res).catch((error) => {
+        console.error("Error fetching data:", error);
+      })
     );
   }
   postOrderData(data) {
     return fetch(`${this._url}/orders`, {
       method: "post",
       body: JSON.stringify({
-        ingredients: data
+        ingredients: data,
       }),
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => this._checkServerResponce(res));
+    })
+      .then((res) => this._checkServerResponce(res))
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }
 }
 
 const api = new Api(baseUrl);
-export default api
+export default api;
