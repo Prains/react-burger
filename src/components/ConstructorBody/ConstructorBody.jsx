@@ -8,15 +8,15 @@ const ConstructorBody = ({ ingredientsData }) => {
   const { burger } = useSelector((state) => state.burger);
   const dispatch = useDispatch();
   const moveCard = (dragIndex, hoverIndex, key) => {
-    const dragCard = burger.filter((ingredient) => ingredient.uuid === key);
-    console.log(dragCard);
+    const dragCard = burger.find((ingredient) => ingredient.uuid === key);
     if (dragCard) {
       const newCards = [...burger];
       newCards.splice(dragIndex, 1);
-      newCards.splice(hoverIndex, 0, ...dragCard);
+      newCards.splice(hoverIndex, 0, dragCard);
       dispatch(setBurger(newCards));
     }
   };
+  
 
   let index = -1;
 

@@ -23,6 +23,7 @@ const BurgerConstructor = () => {
     accept: "ingredient",
     drop: ({ item }) => {
       const uuid = uuidv4();
+      console.log(uuid);
       if (item.type === "bun") {
         const bunIndex = burger.findIndex((b) => b.type === "bun");
         if (bunIndex !== -1) {

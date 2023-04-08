@@ -6,7 +6,6 @@ import IngredientDetails from "./IngredientDetails/IngredientDetails";
 const ModalWithIngredient = (props) => {
   return (
     <Modal close={props.close} header={"Детали ингредиента"}>
-      <img src={props.data.image_large} alt={props.data.name} />
       <IngredientDetails {...props}/>
     </Modal>
   );

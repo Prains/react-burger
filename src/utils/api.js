@@ -12,9 +12,7 @@ class Api {
   }
   getIngredientsData() {
     return fetch(`${this._url}/ingredients`).then((res) =>
-      this._checkServerResponce(res).catch((error) => {
-        console.error("Error fetching data:", error);
-      })
+      this._checkServerResponce(res)
     );
   }
   postOrderData(data) {
@@ -28,9 +26,6 @@ class Api {
       },
     })
       .then((res) => this._checkServerResponce(res))
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
   }
 }
 

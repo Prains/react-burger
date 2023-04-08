@@ -4,7 +4,7 @@ import { useEffect, useCallback } from "react";
 
 const ModalOverlay = ({ close, children }) => {
   const handleOverlayClick = useCallback((e) => {
-    if (Array.from(e.target.classList)[0].indexOf("overlay")) close();
+    if (e.target.classList.contains(styles.overlay)) close();
   }, [close]);
 
   const handleEscapeKey = useCallback((e) => {
