@@ -15,7 +15,7 @@ const ConstructorBody = ({ ingredientsData }) => {
       const newCards = [...noBun];
       newCards.splice(dragIndex, 1);
       newCards.splice(hoverIndex, 0, ...dragCard);
-      newCards.unshift(bun[0]);;
+      newCards.unshift(bun[0]);
       dispatch(setBurger(newCards));
     }
   };
