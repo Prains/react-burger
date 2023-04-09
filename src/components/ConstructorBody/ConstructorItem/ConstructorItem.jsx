@@ -73,7 +73,6 @@ const ConstructorItem = ({ ingredient, index, moveCardHandler, uuid }) => {
   return (
     <div
       className={styles.item}
-      key={ingredient._id}
       ref={ref}
       style={{ opacity: isDragging ? 0.5 : 1 }}
       onClick={() => {
