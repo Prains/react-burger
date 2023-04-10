@@ -1,4 +1,6 @@
-export default class Api {
+import { baseUrl } from "./types";
+
+class Api {
   constructor(url) {
     this._url = url;
   }
@@ -17,11 +19,15 @@ export default class Api {
     return fetch(`${this._url}/orders`, {
       method: "post",
       body: JSON.stringify({
-        ingredients: data
+        ingredients: data,
       }),
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => this._checkServerResponce(res));
+    })
+      .then((res) => this._checkServerResponce(res))
   }
 }
+
+const api = new Api(baseUrl);
+export default api;

@@ -1,0 +1,8 @@
+@use "../../../utils/mixins.scss" as m;
+
+
+.item {
+    @include m.width(568px);
+    @include m.flex();
+    gap: 8px;
+  }
