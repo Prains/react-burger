@@ -11,6 +11,7 @@ const ConstructorBody = ({ ingredientsData }) => {
     const noBun = burger.filter((ingredient) => ingredient.type !== "bun");
     const bun = burger.filter((ingredient) => ingredient.type === "bun");
     const dragCard = noBun.filter((ingredient) => ingredient.uuid === key);
+
     if (dragCard) {
       const newCards = [...noBun];
       newCards.splice(dragIndex, 1);
