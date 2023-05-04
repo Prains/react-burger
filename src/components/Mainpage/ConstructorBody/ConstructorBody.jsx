@@ -2,7 +2,7 @@ import styles from "./ConstructorBody.module.scss";
 import PropTypes from "prop-types";
 import ConstructorItem from "./ConstructorItem/ConstructorItem";
 import { useDispatch, useSelector } from "react-redux";
-import { setBurger } from "../../services/reducers/Burger";
+import { setBurger } from "../../../services/reducers/Burger";
 
 const ConstructorBody = ({ ingredientsData }) => {
   const { burger } = useSelector((state) => state.burger);

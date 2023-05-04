@@ -4,10 +4,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./IngredientItem.module.scss";
 import { useState } from "react";
-import ModalWithIngredient from "../ModalWithIngredient/ModalWithIngredient";
-import { ingredientPropType } from "../../utils/types";
+import ModalWithIngredient from "../../ModalWithIngredient/ModalWithIngredient";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
+import { ingredientPropType } from "../../../utils/types";
 
 const IngredientItem = (props) => {
   const { burger } = useSelector((state) => state.burger);

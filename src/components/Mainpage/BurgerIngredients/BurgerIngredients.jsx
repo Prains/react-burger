@@ -45,7 +45,7 @@ const BurgerIngredients = () => {
     sectionRef.current.addEventListener("scroll", handleScroll);
 
     return () => {
-      sectionRef.current.removeEventListener("scroll", handleScroll);
+      sectionRef.current?.removeEventListener("scroll", handleScroll);
     };
   }, []);
 

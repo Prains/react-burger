@@ -1,4 +1,4 @@
-@use "../../utils/mixins.scss" as m;
+@use "../../../utils/mixins.scss" as m;
 
 .burgeringredients {
   @include m.width(600px);

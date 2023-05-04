@@ -3,14 +3,11 @@ import {
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./ConstructorItem.module.scss";
-
 import { useDrag, useDrop } from "react-dnd";
-
 import { useRef } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import { setBurger } from "../../../services/reducers/Burger";
-import PropTypes from 'prop-types'
+import { setBurger } from "../../../../services/reducers/Burger";
+import PropTypes from "prop-types";
 
 const ConstructorItem = ({ ingredient, index, moveCardHandler, uuid }) => {
   const { burger } = useSelector((state) => state.burger);

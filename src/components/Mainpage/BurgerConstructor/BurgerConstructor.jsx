@@ -1,14 +1,14 @@
 import ConstructorBody from "../ConstructorBody/ConstructorBody";
-import ModalWithOrder from "../ModalWIthOrder/ModalWithOrder";
+import ModalWithOrder from "../../ModalWIthOrder/ModalWithOrder";
 import styles from "./BurgerConstructor.module.scss";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
 import ConstructorPayment from "./ConstructorPayment/ConstructorPayment";
 import { useDrop } from "react-dnd";
-import { useDispatch } from "react-redux";
-import { setBurger } from "../../services/reducers/Burger";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { setBurger } from "../../../services/reducers/Burger";
+
 const BurgerConstructor = () => {
   const [orderVisibility, setOrderVisibility] = useState(false);
   const { burger } = useSelector((state) => state.burger);

@@ -3,15 +3,26 @@ import PropTypes from "prop-types";
 import { useEffect, useCallback } from "react";
 
 const ModalOverlay = ({ close, children }) => {
-  const handleOverlayClick = useCallback((e) => {
-    if (e.target.classList.contains(styles.overlay)) close();
-  }, [close]);
+  const handleOverlayClick = useCallback(
+    (e) => {
+      if (e.target.classList.contains(styles.overlay)) close();
+    },
+    [close]
+  );
 
-  const handleEscapeKey = useCallback((e) => {
-    if (e.key === "Escape") {
-      close();
-    }
-  }, [close]);
+  const handleEscapeKey = useCallback(
+    (e) => {
+      if (e.key === "Escape") {
+        close();
+      }
+    },
+    [close]
+  );
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "unset");
+  }, []);
 
   useEffect(() => {
     document.addEventListener("keyup", handleEscapeKey);
