@@ -26,6 +26,24 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
+  makeNewUser(user) {
+    return fetch(`${this._url}/auth/register`, {
+      method: "post",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => this._checkServerResponce(res));
+  }
+  authorizeUser(user) {
+    return fetch(`${this._url}/auth/login`, {
+      method: "post",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => this._checkServerResponce(res));
+  }
 }
 
 const api = new Api(baseUrl);

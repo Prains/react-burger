@@ -1,0 +1,23 @@
+@use "../../utils/mixins.scss" as m;
+
+.content {
+  @include m.width(860px);
+  margin: 120px auto 612px auto;
+  @include m.flex(start);
+  gap: 60px;
+}
+
+.navigation {
+  @include m.width(320px);
+  @include m.flex(start, center);
+  flex-direction: column;
+  a {
+    height: 64px;
+  }
+}
+
+.inputs {
+  @include m.flex();
+  flex-direction: column;
+  gap: 24px;
+}

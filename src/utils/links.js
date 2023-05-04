@@ -3,6 +3,7 @@ import Mainpage from "../pages/Mainapge/Mainpage";
 import Login from "../pages/LoginPage/Login/Login";
 import Layout from "../components/Layout/Layout";
 import RegistrationPage from "../pages/RegistrationPage/RegistratonPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 const links = {
   mainpage: "/",
@@ -15,7 +16,8 @@ const links = {
   feed: "/feed",
 };
 
-const { mainpage, login, register, forgot, reset, ingredients, feed } = links;
+const { mainpage, login, register, forgot, reset, ingredients, feed, profile } =
+  links;
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <div>feed</div>
+      </Layout>
+    ),
+  },
+  {
+    path: profile,
+    element: (
+      <Layout>
+        <ProfilePage />
       </Layout>
     ),
   },
