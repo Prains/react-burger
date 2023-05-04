@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Mainpage from "../pages/Mainapge/Mainpage";
 import Login from "../pages/LoginPage/Login/Login";
 import Layout from "../components/Layout/Layout";
+import RegistrationPage from "../pages/RegistrationPage/RegistratonPage";
 
 const links = {
   mainpage: "/",
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
     path: register,
     element: (
       <Layout>
-        <div>register</div>
+        <RegistrationPage />
       </Layout>
     ),
   },

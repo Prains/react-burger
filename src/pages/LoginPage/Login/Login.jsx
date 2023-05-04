@@ -11,11 +11,11 @@ const Login = () => {
   return (
     <section className={styles.login}>
       <h4 className={`text text_type_main-medium ${styles.title}`}>Вход</h4>
-      <div className={styles.content}>
+      <form className={styles.content}>
         <EmailInput placeholder="E-mail" />
         <Input placeholder="Пароль" icon={"ShowIcon"} type="password" />
-      </div>
-      <Button>Войти</Button>
+        <Button>Войти</Button>
+      </form>
       <article className={styles.article}>
         <UtilityText to={links.register} link={"Зарегистрироваться"}>
           Вы - новый пользователь?
