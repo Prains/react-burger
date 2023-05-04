@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { fetchIngredients } from "../../services/actions";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,12 +19,33 @@ function App() {
   if (isLoading) {
     return <h1>Page is still loading....</h1>;
   }
-
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Mainpage />,
+    },
+    {
+      path: "/login",
+      element: <div>login</div>,
+    },
+    {
+      path: "/register",
+      element: <div>register</div>,
+    },
+    {
+      path: "/forgot-password",
+      element: <div>forgot password</div>,
+    },
+    {
+      path: "/reset-password",
+      element: <div>reset password</div>,
+    },
+  ]);
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="App">
         <AppHeader />
-        <Mainpage />
+        <RouterProvider router={router} />
       </div>
     </DndProvider>
   );

@@ -24,8 +24,7 @@ class Api {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => this._checkServerResponce(res))
+    }).then((res) => this._checkServerResponce(res));
   }
 }
 
