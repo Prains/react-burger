@@ -11,9 +11,10 @@ const links = {
   reset: "/reset-password",
   profile: "/profile",
   ingredients: "/ingredients",
+  feed: "/feed",
 };
 
-const { mainpage, login, register, forgot, reset, ingredients } = links;
+const { mainpage, login, register, forgot, reset, ingredients, feed } = links;
 
 const router = createBrowserRouter([
   {
@@ -34,15 +35,35 @@ const router = createBrowserRouter([
   },
   {
     path: register,
-    element: <div>register</div>,
+    element: (
+      <Layout>
+        <div>register</div>
+      </Layout>
+    ),
   },
   {
     path: forgot,
-    element: <div>forgot password</div>,
+    element: (
+      <Layout>
+        <div>forgot password</div>
+      </Layout>
+    ),
   },
   {
     path: reset,
-    element: <div>reset password</div>,
+    element: (
+      <Layout>
+        <div>reset password</div>
+      </Layout>
+    ),
+  },
+  {
+    path: feed,
+    element: (
+      <Layout>
+        <div>feed</div>
+      </Layout>
+    ),
   },
 ]);
 

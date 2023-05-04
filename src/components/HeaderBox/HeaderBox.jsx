@@ -1,13 +1,16 @@
 import styles from "./HeaderBox.module.scss";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+
 const HeaderBox = (props) => {
   return (
     <NavLink
       to={props.to}
-      className={`pt-4 pb-4 pl-5 pr-5 ${
-        styles.box
-      } text text_type_main-default ${props.inactive ? styles.yes : ""}`}
+      className={({ isActive }) =>
+        `pt-4 pb-4 pl-5 pr-5 ${styles.box} text text_type_main-default ${
+          isActive ? "" : styles.yes
+        }`
+      }
       href="/"
     >
       {props.children}

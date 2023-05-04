@@ -4,7 +4,7 @@
   @include m.width(480px);
   @include m.flex();
   flex-direction: column;
-  margin: 180px auto 0 auto;
+  margin: 180px auto 362px auto;
 }
 
 .content {
@@ -16,4 +16,11 @@
 
 .title {
   margin-bottom: 24px;
+}
+
+.article {
+  margin-top: 80px;
+  @include m.flex();
+  flex-direction: column;
+  gap: 16px;
 }
