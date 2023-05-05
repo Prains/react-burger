@@ -8,16 +8,18 @@ import { links } from "../../../utils/links";
 import UtilityText from "../../../components/LoginPage/UtilityText/UtilityText";
 import { useState } from "react";
 import api from "../../../utils/api";
-import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../../services/reducers/User";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [authorized, setAuthorized] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <section className={styles.login}>
-      {authorized && <Navigate to={links.mainpage} />}
       <h4 className={`text text_type_main-medium ${styles.title}`}>Вход</h4>
       <form className={styles.content}>
         <EmailInput
@@ -50,14 +52,14 @@ const Login = () => {
             api
               .authorizeUser(user)
               .then((res) => {
+                dispatch(setUser(res.user));
                 alert("Успех!");
-                setAuthorized(true);
+                navigate(links.profile);
               })
               .catch((res) => {
                 alert(
                   `Что-то произошло не так. Попробуйте позже. Код ошибки: ${res.message}`
                 );
-                setAuthorized(false);
               });
           }}
         >

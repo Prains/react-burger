@@ -7,8 +7,21 @@ import styles from "./AppHeader.module.scss";
 import HeaderBox from "../HeaderBox/HeaderBox";
 import { links } from "../../utils/links";
 import HeaderLogo from "./HeaderLogo/HeaderLogo";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const { user } = useSelector((state) => state.user);
+  const [profileLink, setProfileLink] = useState();
+
+  useEffect(() => {
+    if (user) {
+      setProfileLink(links.profile);
+    } else {
+      setProfileLink(links.login);
+    }
+  }, [user]);
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -31,7 +44,7 @@ const Header = () => {
           </HeaderBox>
         </div>
         <HeaderLogo />
-        <HeaderBox to={links.login}>
+        <HeaderBox to={profileLink}>
           {({ isActive }) => (
             <>
               <ProfileIcon type={`${isActive ? "" : "secondary"}`} />

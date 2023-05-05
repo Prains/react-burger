@@ -4,6 +4,7 @@ import Login from "../pages/LoginPage/Login/Login";
 import Layout from "../components/Layout/Layout";
 import RegistrationPage from "../pages/RegistrationPage/RegistratonPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import ProtectedRouteElement from "../components/ProtectedRouteElement/ProtectedRouteElement";
 
 const links = {
   mainpage: "/",
@@ -72,7 +73,9 @@ const router = createBrowserRouter([
     path: profile,
     element: (
       <Layout>
-        <ProfilePage />
+        <ProtectedRouteElement>
+          <ProfilePage />
+        </ProtectedRouteElement>
       </Layout>
     ),
   },

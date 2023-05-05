@@ -8,16 +8,19 @@ import { links } from "../../utils/links";
 import { useState } from "react";
 import api from "../../utils/api";
 import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../services/reducers/User";
 
 const RegistrationPage = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [registered, setRegistered] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <section className={styles.content}>
-      {registered && <Navigate to={links.login} />}
+      {registered && <Navigate to={links.profile} />}
       <h4 className="text text_type_main-medium mb-6">Регистрация</h4>
       <form className={styles.form}>
         <Input
@@ -46,7 +49,7 @@ const RegistrationPage = () => {
           placeholder="Пароль"
           icon="ShowIcon"
           value={password}
-          minlength={2}
+          minLength={2}
           required
           onChange={(e) => {
             setPassword(e.target.value);
@@ -63,12 +66,12 @@ const RegistrationPage = () => {
             api
               .makeNewUser(user)
               .then((res) => {
-                console.log(res);
                 alert("Успех!");
+                dispatch(setUser(res.user));
                 setRegistered(true);
               })
               .catch(() => {
-                alert(`Что-то пошло не так. Повторите позже.`);
+                alert(`Пользователь с такими данными уже существует`);
               });
           }}
         >
