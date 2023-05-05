@@ -11,10 +11,11 @@ import api from "../../../utils/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../services/reducers/User";
+import token from "../../../utils/token";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ const Login = () => {
           }}
         />
         <Button
+          htmlType="submit"
           onClick={(e) => {
             e.preventDefault();
             const user = {
@@ -52,6 +54,8 @@ const Login = () => {
             api
               .authorizeUser(user)
               .then((res) => {
+                token.setAccessToken(res.accessToken);
+                token.setRefreshToken(res.refreshToken);
                 dispatch(setUser(res.user));
                 alert("Успех!");
                 navigate(links.profile);

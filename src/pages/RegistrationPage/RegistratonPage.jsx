@@ -12,9 +12,9 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../services/reducers/User";
 
 const RegistrationPage = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [registered, setRegistered] = useState(false);
   const dispatch = useDispatch();
 

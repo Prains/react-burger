@@ -44,6 +44,36 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
+  checkUser(token) {
+    return fetch(`${this._url}/auth/user`, {
+      method: "get",
+      headers: {
+        authorization: token,
+      },
+    }).then((res) => this._checkServerResponce(res));
+  }
+  logOut(refreshToken) {
+    return fetch(`${this._url}/auth/logout`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        token: refreshToken,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
+  refreshToken(token) {
+    return fetch(`${this._url}/auth/token`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        token: token,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
 }
 
 const api = new Api(baseUrl);
