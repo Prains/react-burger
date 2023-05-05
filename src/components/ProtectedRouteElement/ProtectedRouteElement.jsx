@@ -9,7 +9,7 @@ const ProtectedRouteElement = ({ children }) => {
 
   useEffect(() => {
     if (!user) {
-      navigate(links.mainpage);
+      navigate(links.login);
     }
   }, [user, navigate]);
 

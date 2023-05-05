@@ -74,7 +74,7 @@ const Login = () => {
         <UtilityText to={links.register} link={"Зарегистрироваться"}>
           Вы - новый пользователь?
         </UtilityText>
-        <UtilityText to={links.reset} link={"Восстановить пароль"}>
+        <UtilityText to={links.forgot} link={"Восстановить пароль"}>
           Забыли пароль?
         </UtilityText>
       </article>

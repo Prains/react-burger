@@ -5,6 +5,9 @@ import Layout from "../components/Layout/Layout";
 import RegistrationPage from "../pages/RegistrationPage/RegistratonPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import ProtectedRouteElement from "../components/ProtectedRouteElement/ProtectedRouteElement";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage/ForgotPasswordPage";
+import ProtectedUnauthorizedRouteElement from "../components/ProtectedRouteElement/ProtectedUnauthorizedRouteElement";
+import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
 
 const links = {
   mainpage: "/",
@@ -33,7 +36,9 @@ const router = createBrowserRouter([
     path: login,
     element: (
       <Layout>
-        <Login />
+        <ProtectedUnauthorizedRouteElement>
+          <Login />
+        </ProtectedUnauthorizedRouteElement>
       </Layout>
     ),
   },
@@ -41,7 +46,9 @@ const router = createBrowserRouter([
     path: register,
     element: (
       <Layout>
-        <RegistrationPage />
+        <ProtectedUnauthorizedRouteElement>
+          <RegistrationPage />
+        </ProtectedUnauthorizedRouteElement>
       </Layout>
     ),
   },
@@ -49,7 +56,9 @@ const router = createBrowserRouter([
     path: forgot,
     element: (
       <Layout>
-        <div>forgot password</div>
+        <ProtectedUnauthorizedRouteElement>
+          <ForgotPasswordPage />
+        </ProtectedUnauthorizedRouteElement>
       </Layout>
     ),
   },
@@ -57,7 +66,9 @@ const router = createBrowserRouter([
     path: reset,
     element: (
       <Layout>
-        <div>reset password</div>
+        <ProtectedUnauthorizedRouteElement>
+          <ResetPasswordPage />
+        </ProtectedUnauthorizedRouteElement>
       </Layout>
     ),
   },

@@ -74,6 +74,29 @@ class Api {
       }),
     }).then((res) => this._checkServerResponce(res));
   }
+  resetPassword(email) {
+    return fetch(`${this._url}/password-reset`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
+  createNewPassword(password, code) {
+    return fetch(`${this._url}/password-reset/reset`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        password: password,
+        token: code,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
 }
 
 const api = new Api(baseUrl);
