@@ -12,6 +12,7 @@ import { setBurger } from "../../../services/reducers/Burger";
 const BurgerConstructor = () => {
   const [orderVisibility, setOrderVisibility] = useState(false);
   const { burger } = useSelector((state) => state.burger);
+  const { user } = useSelector((state) => state.user);
   const bun = burger.filter((item) => item.type === "bun");
   const ingredients = burger.filter((item) => item.type !== "bun");
   const totalPrice = burger.reduce((acc, curr) => acc + curr.price, 0);
@@ -81,6 +82,7 @@ const BurgerConstructor = () => {
         totalPrice={totalPrice}
         setOrderVisibility={setOrderVisibility}
         visibility={visibility}
+        user={user}
       />
       {orderVisibility && visibility && (
         <ModalWithOrder close={setOrderVisibility} />

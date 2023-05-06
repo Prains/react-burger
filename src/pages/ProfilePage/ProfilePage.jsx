@@ -6,11 +6,13 @@ import { useState } from "react";
 import token from "../../utils/token";
 import api from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { user } = useSelector((state) => state.user);
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState(user.password);
   const navigate = useNavigate();
 
   return (

@@ -23,17 +23,19 @@ export const fetchOrderNumber = createAsyncThunk(
 export const fetchCurrentUser = createAsyncThunk(
   "user/fetchCurrentUser",
   async () => {
-    try {
-      const access = token.getAccesToken();
-      const responce = await api.checkUser(access);
-      return responce.user;
-    } catch (error) {
-      const refresh = token.getRefreshToken();
-      const responce = await api.refreshToken(refresh);
-      token.setAccessToken(responce.accessToken);
-      const access = token.getAccesToken();
-      const responceSecond = await api.checkUser(access);
-      return responceSecond.user;
+    const access = token.getAccesToken();
+    if (access) {
+      try {
+        const responce = await api.checkUser(access);
+        return responce.user;
+      } catch (error) {
+        const refresh = token.getRefreshToken();
+        const responce = await api.refreshToken(refresh);
+        token.setAccessToken(responce.accessToken);
+        const access = token.getAccesToken();
+        const responceSecond = await api.checkUser(access);
+        return responceSecond.user;
+      }
     }
   }
 );
