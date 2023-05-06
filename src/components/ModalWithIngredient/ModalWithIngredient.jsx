@@ -1,4 +1,3 @@
-
 import Modal from "../Modal/Modal";
 import PropTypes from "prop-types";
 import IngredientDetails from "./IngredientDetails/IngredientDetails";
@@ -6,7 +5,7 @@ import IngredientDetails from "./IngredientDetails/IngredientDetails";
 const ModalWithIngredient = (props) => {
   return (
     <Modal close={props.close} header={"Детали ингредиента"}>
-      <IngredientDetails {...props}/>
+      <IngredientDetails {...props} />
     </Modal>
   );
 };

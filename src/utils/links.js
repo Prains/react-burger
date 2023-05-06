@@ -8,7 +8,8 @@ import ProtectedRouteElement from "../components/ProtectedRouteElement/Protected
 import ForgotPasswordPage from "../pages/ForgotPasswordPage/ForgotPasswordPage";
 import ProtectedUnauthorizedRouteElement from "../components/ProtectedRouteElement/ProtectedUnauthorizedRouteElement";
 import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
-
+import IngredientInfo from "../pages/IngredientInfo/IngredientInfo";
+// TODO - ingredientinfo
 const links = {
   mainpage: "/",
   login: "/login",
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
         <ProtectedRouteElement>
           <ProfilePage />
         </ProtectedRouteElement>
+      </Layout>
+    ),
+  },
+  {
+    path: `${ingredients}/:id`,
+    element: (
+      <Layout>
+        <IngredientInfo />
       </Layout>
     ),
   },
