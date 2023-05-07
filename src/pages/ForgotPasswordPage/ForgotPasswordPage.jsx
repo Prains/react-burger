@@ -15,7 +15,19 @@ const ForgotPasswordPage = () => {
 
   return (
     <section className={styles.section}>
-      <form className={styles.form}>
+      <form
+        className={styles.form}
+        onSubmit={(e) => {
+          e.preventDefault();
+          api
+            .resetPassword(email)
+            .then((res) => {
+              alert("Письмо с кодом восстановления успешно отправлено!");
+              navigate(`${links.reset}?from=forgot-password`);
+            })
+            .catch((res) => alert("Почта не найдена"));
+        }}
+      >
         <h4 className="text text_type_main-medium">Восстановление пароля</h4>
         <Input
           type="email"
@@ -28,21 +40,7 @@ const ForgotPasswordPage = () => {
             setEmail(e.target.value);
           }}
         />
-        <Button
-          htmlType="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            api
-              .resetPassword(email)
-              .then((res) => {
-                alert("Письмо с кодом восстановления успешно отправлено!");
-                navigate(`${links.reset}?from=forgot-password`);
-              })
-              .catch((res) => alert("Почта не найдена"));
-          }}
-        >
-          Восстановить
-        </Button>
+        <Button htmlType="submit">Восстановить</Button>
       </form>
       <UtilityText to={links.login} link="Войти">
         Вспомнили пароль?

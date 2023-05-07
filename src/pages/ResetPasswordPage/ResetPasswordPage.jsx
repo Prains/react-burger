@@ -22,7 +22,7 @@ const ResetPasswordPage = () => {
     if (from !== "forgot-password") {
       navigate(links.login);
     }
-  }, [navigate]);
+  }, [navigate, from]);
 
   return (
     <section className={styles.section}>

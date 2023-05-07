@@ -12,9 +12,9 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../services/reducers/User";
 
 const RegistrationPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [registered, setRegistered] = useState(false);
   const dispatch = useDispatch();
 
@@ -22,7 +22,27 @@ const RegistrationPage = () => {
     <section className={styles.content}>
       {registered && <Navigate to={links.profile} />}
       <h4 className="text text_type_main-medium mb-6">Регистрация</h4>
-      <form className={styles.form}>
+      <form
+        className={styles.form}
+        onSubmit={(e) => {
+          e.preventDefault();
+          const user = {
+            email: email,
+            password: password,
+            name: name,
+          };
+          api
+            .makeNewUser(user)
+            .then((res) => {
+              alert("Успех!");
+              dispatch(setUser(res.user));
+              setRegistered(true);
+            })
+            .catch(() => {
+              alert(`Пользователь с такими данными уже существует`);
+            });
+        }}
+      >
         <Input
           type="text"
           placeholder="Имя"
@@ -55,28 +75,7 @@ const RegistrationPage = () => {
             setPassword(e.target.value);
           }}
         />
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            const user = {
-              email: email,
-              password: password,
-              name: name,
-            };
-            api
-              .makeNewUser(user)
-              .then((res) => {
-                alert("Успех!");
-                dispatch(setUser(res.user));
-                setRegistered(true);
-              })
-              .catch(() => {
-                alert(`Пользователь с такими данными уже существует`);
-              });
-          }}
-        >
-          Зарегистрироваться
-        </Button>
+        <Button htmlType="submit">Зарегистрироваться</Button>
       </form>
       <UtilityText to={links.login} link={"Войти"}>
         Уже зарегистрированы?
