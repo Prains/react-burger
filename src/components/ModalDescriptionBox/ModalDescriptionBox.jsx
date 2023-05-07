@@ -16,12 +16,10 @@ const ModalDescriptionBox = ({ calories, proteins, fat, carbohydrates }) => {
 };
 
 ModalDescriptionBox.propTypes = {
-  data: PropTypes.shape({
-    calories: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    fat: PropTypes.number,
-    proteins: PropTypes.number,
-  }).isRequired,
+  calories: PropTypes.number,
+  carbohydrates: PropTypes.number,
+  fat: PropTypes.number,
+  proteins: PropTypes.number,
 };
 
 export default ModalDescriptionBox;

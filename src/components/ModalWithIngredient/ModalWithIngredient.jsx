@@ -4,7 +4,13 @@ import IngredientDetails from "./IngredientDetails/IngredientDetails";
 
 const ModalWithIngredient = (props) => {
   return (
-    <Modal close={props.close} header={"Детали ингредиента"}>
+    <Modal
+      close={() => {
+        props.close();
+        window.history.back();
+      }}
+      header={"Детали ингредиента"}
+    >
       <IngredientDetails {...props} />
     </Modal>
   );

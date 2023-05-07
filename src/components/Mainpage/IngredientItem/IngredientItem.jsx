@@ -8,10 +8,10 @@ import ModalWithIngredient from "../../ModalWithIngredient/ModalWithIngredient";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
 import { ingredientPropType } from "../../../utils/types";
-import { useNavigate } from "react-router-dom";
 import { links } from "../../../utils/links";
 
 const IngredientItem = (props) => {
+  const [isModalShown, setModalShown] = useState(false);
   const { burger } = useSelector((state) => state.burger);
   const burgerItem = burger.find((item) => item._id === props.data._id);
   const countItemsWithId = burger.filter(
@@ -25,13 +25,19 @@ const IngredientItem = (props) => {
       isDragging: !!monitor.isDragging(),
     }),
   }));
-  const navigate = useNavigate();
 
   return (
     <>
       <div
         className={styles.item}
-        onClick={() => navigate(`${links.ingredients}/${props.data._id}`)}
+        onClick={() => {
+          setModalShown(true);
+          window.history.pushState(
+            "",
+            "",
+            `${links.ingredients}/${props.data._id}`
+          );
+        }}
         ref={drag}
         style={{ opacity: isDragging ? 0.5 : 1 }}
       >
@@ -44,6 +50,9 @@ const IngredientItem = (props) => {
         </p>
         <p className="text text_type_main-default">{props.data.name}</p>
       </div>
+      {isModalShown && (
+        <ModalWithIngredient close={setModalShown} {...props.data} />
+      )}
     </>
   );
 };

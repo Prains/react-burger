@@ -36,7 +36,7 @@ const ForgotPasswordPage = () => {
               .resetPassword(email)
               .then((res) => {
                 alert("Письмо с кодом восстановления успешно отправлено!");
-                navigate(links.reset);
+                navigate(`${links.reset}?from=forgot-password`);
               })
               .catch((res) => alert("Почта не найдена"));
           }}
