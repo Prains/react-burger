@@ -1,44 +1,59 @@
 import styles from "./ProfilePage.module.scss";
-import { links } from "../../utils/links";
-import ProfileLink from "../../components/ProfilePage/ProfileLink/ProfileLink";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  Button,
+  Input,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
-import token from "../../utils/token";
 import api from "../../utils/api";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import ProfileRoutes from "./ProfileRoutes/ProfileRoutes";
+import token from "../../utils/token";
+import { setUser } from "../../services/reducers/User";
 
 const ProfilePage = () => {
   const { user } = useSelector((state) => state.user);
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState(user.password);
-  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <section className={styles.content}>
       <article className={styles.navigation}>
-        <ProfileLink to={links.profile}>Профиль</ProfileLink>
-        <ProfileLink to={links.mainpage}>История заказов</ProfileLink>
-        <p
-          className="text text_type_main-medium text_color_inactive pointer"
-          onClick={() => {
-            const access = token.getRefreshToken();
-            api.logOut(access).then(() => {
-              token.logOut();
-              alert("Вы успешно вышли");
-              navigate(links.mainpage);
-              window.location.reload();
-            });
-          }}
-        >
-          Выход
-        </p>
-        <p className="mt-20 text text_type_main-default text_color_inactive">
-          В этом разделе вы можете изменить свои персональные данные
-        </p>
+        <ProfileRoutes />
       </article>
-      <article className={styles.inputs}>
+      <form
+        className={styles.inputs}
+        onReset={(e) => {
+          e.preventDefault();
+          setName(user.name);
+          setEmail(user.email);
+          setPassword("");
+          setIsEditing(false);
+        }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          const editedUser = {
+            email: email,
+            name: name,
+            password: password,
+          };
+          const access = token.getAccesToken();
+          api
+            .editUserData(access, editedUser)
+            .then((res) => {
+              dispatch(setUser(res.user));
+              setName(res.user.name);
+              setEmail(res.user.email);
+              setPassword("");
+              setIsEditing(false);
+            })
+            .catch(() => {
+              alert("Произошла какая-то ошибка");
+            });
+        }}
+      >
         <Input
           type="text"
           minLength={2}
@@ -47,6 +62,10 @@ const ProfilePage = () => {
           required
           placeholder="Имя"
           icon="EditIcon"
+          onChange={(e) => {
+            setIsEditing(true);
+            setName(e.target.value);
+          }}
         />
         <Input
           type="email"
@@ -56,6 +75,10 @@ const ProfilePage = () => {
           required
           value={email}
           icon="EditIcon"
+          onChange={(e) => {
+            setIsEditing(true);
+            setEmail(e.target.value);
+          }}
         />
         <Input
           type="password"
@@ -65,8 +88,20 @@ const ProfilePage = () => {
           value={password}
           placeholder="Пароль"
           icon="EditIcon"
+          onChange={(e) => {
+            setIsEditing(true);
+            setPassword(e.target.value);
+          }}
         />
-      </article>
+        {isEditing && (
+          <div className={styles.bottom}>
+            <Button htmlType="reset" type="secondary">
+              Отмена
+            </Button>
+            <Button htmlType="submit">Сохранить</Button>
+          </div>
+        )}
+      </form>
     </section>
   );
 };

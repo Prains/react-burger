@@ -22,8 +22,12 @@ const OrderDetails = () => {
       ];
       dispatch(fetchOrderNumber(ingredientsDataId));
     }
+    if (burgerData.length === 0 && bunsId) {
+      const ingredientsDataId = [bunsId, bunsId];
+      dispatch(fetchOrderNumber(ingredientsDataId));
+    }
   }, [dispatch]);
-  
+
   return (
     <div className={styles.box}>
       <p className={`text text_type_digits-large mt-10 mb-8 ${styles.glow}`}>

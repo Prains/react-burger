@@ -21,3 +21,9 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.bottom {
+  align-self: end;
+  @include m.flex();
+  gap: 28px;
+}

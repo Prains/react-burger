@@ -52,6 +52,16 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
+  editUserData(token, user) {
+    return fetch(`${this._url}/auth/user`, {
+      method: "PATCH",
+      headers: {
+        authorization: token,
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(user),
+    }).then((res) => this._checkServerResponce(res));
+  }
   logOut(refreshToken) {
     return fetch(`${this._url}/auth/logout`, {
       method: "post",
