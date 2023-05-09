@@ -1,0 +1,13 @@
+@use "../../../../utils/mixins.scss" as m;
+
+
+.payment {
+    align-self: end;
+    @include m.flex();
+    gap: 40px;
+    margin-right: 38px;
+    .text {
+      @include m.flex();
+      gap: 8px;
+    }
+  }

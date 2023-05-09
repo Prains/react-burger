@@ -1,0 +1,26 @@
+@use "../../../utils/mixins.scss" as m;
+
+.login {
+  @include m.width(480px);
+  @include m.flex();
+  flex-direction: column;
+  margin: 180px auto 362px auto;
+}
+
+.content {
+  @include m.flex();
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin-bottom: 24px;
+}
+
+.article {
+  margin-top: 80px;
+  @include m.flex();
+  flex-direction: column;
+  gap: 16px;
+}

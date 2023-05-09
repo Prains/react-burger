@@ -1,8 +1,0 @@
-@use "../../utils/mixins.scss" as m;
-
-
-.tabs {
-    @include m.flex();
-    margin-top: 20px;
-    margin-bottom: 40px;
-}

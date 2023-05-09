@@ -1,0 +1,10 @@
+@use "../../../utils/mixins.scss" as m;
+
+.content {
+  @include m.width(600px);
+  @include m.flex(start, start);
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}

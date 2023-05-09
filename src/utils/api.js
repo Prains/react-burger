@@ -26,6 +26,87 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
+  makeNewUser(user) {
+    return fetch(`${this._url}/auth/register`, {
+      method: "post",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => this._checkServerResponce(res));
+  }
+  authorizeUser(user) {
+    return fetch(`${this._url}/auth/login`, {
+      method: "post",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => this._checkServerResponce(res));
+  }
+  checkUser(token) {
+    return fetch(`${this._url}/auth/user`, {
+      method: "get",
+      headers: {
+        authorization: token,
+      },
+    }).then((res) => this._checkServerResponce(res));
+  }
+  editUserData(token, user) {
+    return fetch(`${this._url}/auth/user`, {
+      method: "PATCH",
+      headers: {
+        authorization: token,
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(user),
+    }).then((res) => this._checkServerResponce(res));
+  }
+  logOut(refreshToken) {
+    return fetch(`${this._url}/auth/logout`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        token: refreshToken,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
+  refreshToken(token) {
+    return fetch(`${this._url}/auth/token`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        token: token,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
+  resetPassword(email) {
+    return fetch(`${this._url}/password-reset`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
+  createNewPassword(password, code) {
+    return fetch(`${this._url}/password-reset/reset`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        password: password,
+        token: code,
+      }),
+    }).then((res) => this._checkServerResponce(res));
+  }
 }
 
 const api = new Api(baseUrl);

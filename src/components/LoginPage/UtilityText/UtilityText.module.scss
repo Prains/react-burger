@@ -1,0 +1,13 @@
+@use "../../../utils/mixins.scss" as m;
+
+.text {
+  @include m.flex();
+  gap: 8px;
+}
+
+.link {
+  color: #4c4cff;
+  &:hover {
+    opacity: 50%;
+  }
+}
