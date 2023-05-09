@@ -1,0 +1,11 @@
+@use "../../../../../utils/mixins.scss" as m;
+
+.price {
+  @include m.flex();
+  gap: 9px;
+}
+
+.bottombottom {
+  @include m.flex(center, space-between);
+  margin-top: 48px;
+}

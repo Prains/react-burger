@@ -1,0 +1,24 @@
+@use "../../../../../utils/mixins.scss" as m;
+
+.overflow {
+  margin-top: 16px;
+  @include m.flex(start, start);
+  flex-direction: column;
+  gap: 16px;
+  max-height: 296px;
+  overflow-y: auto;
+}
+
+.itemtop {
+  @include m.flex(center, space-between);
+  width: 100%;
+}
+
+.itemtopbottom {
+  @include m.flex();
+}
+
+.price {
+  @include m.flex();
+  gap: 9px;
+}

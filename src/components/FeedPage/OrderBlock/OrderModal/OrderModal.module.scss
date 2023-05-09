@@ -11,38 +11,7 @@
   border-radius: 40px;
 }
 
-.header {
-  @include m.flex(center, space-between);
-}
 
-.uppertitle {
-  @include m.flex(start, start);
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 60px;
-}
-
-.titlespan {
-  color: #00cccc;
-}
-
-.overflow {
-  margin-top: 16px;
-  @include m.flex(start, start);
-  flex-direction: column;
-  gap: 16px;
-  max-height: 296px;
-  overflow-y: auto;
-}
-
-.itemtop {
-  @include m.flex(center, space-between);
-  width: 100%;
-}
-
-.itemtopbottom {
-  @include m.flex();
-}
 
 .price {
   @include m.flex();
