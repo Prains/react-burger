@@ -4,7 +4,7 @@
   @include m.width(584px);
   border-radius: 40px;
   padding: 24px;
-  @include m.flex(center, start);
+  @include m.flex(start, start);
   flex-direction: column;
   gap: 24px;
   background: #1c1c21;

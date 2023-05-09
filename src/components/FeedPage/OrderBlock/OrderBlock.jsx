@@ -1,10 +1,14 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./OrderBlock.module.scss";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import OrderModal from "./OrderModal/OrderModal";
+import { links } from "../../../utils/links";
 
 const OrderBlock = ({ order }) => {
   const { name, number, createdAt } = order;
   const { ingredients } = useSelector((state) => state.ingredients);
+  const [orderPopupShown, setOrderPopupShown] = useState(false);
   const currentIngredients = ingredients.filter((ingredient) =>
     order.ingredients.some(
       (orderIngredient) => orderIngredient === ingredient._id
@@ -36,32 +40,52 @@ const OrderBlock = ({ order }) => {
   const date = formatDate(createdAt);
 
   return (
-    <article className={styles.article}>
-      <div className={styles.numbers}>
-        <p className="text text_type_main-medium">#{number}</p>
-        <p className="text text_type_main-default text_color_inactive">
-          {date} i-GMT+3
-        </p>
-      </div>
-      <h5 className="text text_type_main-medium">{name}</h5>
-      <div className={styles.bottom}>
-        <div className={styles.images}>
-          {currentIngredients.map((ingredient) => {
-            return (
-              <img
-                src={ingredient.image}
-                className={styles.image}
-                alt={ingredient.name}
-                key={ingredient._id}
-              />
-            );
-          })}
+    <>
+      <article
+        className={styles.article}
+        onClick={() => {
+          window.history.pushState("", "", `${links.feed}/${order._id}`);
+          setOrderPopupShown(true);
+        }}
+      >
+        <div className={styles.numbers}>
+          <p className="text text_type_main-medium">#{number}</p>
+          <p className="text text_type_main-default text_color_inactive">
+            {date} i-GMT+3
+          </p>
         </div>
-        <p className={"text text_type_main-medium " + styles.price}>
-          {totalPrice} <CurrencyIcon />
-        </p>
-      </div>
-    </article>
+        <h5 className="text text_type_main-medium">{name}</h5>
+        <div className={styles.bottom}>
+          <div className={styles.images}>
+            {currentIngredients.map((ingredient) => {
+              return (
+                <img
+                  src={ingredient.image}
+                  className={styles.image}
+                  alt={ingredient.name}
+                  key={ingredient._id}
+                />
+              );
+            })}
+          </div>
+          <p className={"text text_type_main-medium " + styles.price}>
+            {totalPrice} <CurrencyIcon />
+          </p>
+        </div>
+      </article>
+      {orderPopupShown && (
+        <OrderModal
+          close={() => {
+            window.history.back();
+            setOrderPopupShown(false);
+          }}
+          order={order}
+          date={date}
+          ingredients={currentIngredients}
+          totalPrice={totalPrice}
+        />
+      )}
+    </>
   );
 };
 
