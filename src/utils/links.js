@@ -9,6 +9,7 @@ import ForgotPasswordPage from "../pages/ForgotPasswordPage/ForgotPasswordPage";
 import ProtectedUnauthorizedRouteElement from "../components/ProtectedRouteElement/ProtectedUnauthorizedRouteElement";
 import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
 import IngredientInfo from "../pages/IngredientInfo/IngredientInfo";
+import FeedPage from "../pages/FeedPage/FeedPage";
 // TODO - ingredientinfo
 const links = {
   mainpage: "/",
@@ -77,9 +78,15 @@ const router = createBrowserRouter([
     path: feed,
     element: (
       <Layout>
-        <div>feed</div>
+        <FeedPage />
       </Layout>
     ),
+    children: [
+      {
+        path: ":id",
+        element: <div>123</div>,
+      },
+    ],
   },
   {
     path: profile,
