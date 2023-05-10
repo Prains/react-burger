@@ -1,0 +1,22 @@
+@use "../../utils/mixins.scss" as m;
+
+.section {
+  @include m.width(640px);
+  margin: 122px auto 230px auto;
+}
+
+.number {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.uppertitle {
+  @include m.flex(start, start);
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 60px;
+}
+
+.titlespan {
+  color: #00cccc;
+}

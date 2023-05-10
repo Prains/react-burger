@@ -10,6 +10,7 @@ import ProtectedUnauthorizedRouteElement from "../components/ProtectedRouteEleme
 import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
 import IngredientInfo from "../pages/IngredientInfo/IngredientInfo";
 import FeedPage from "../pages/FeedPage/FeedPage";
+import OrderInfo from "../pages/OrderInfo/OrderInfo";
 // TODO - ingredientinfo
 const links = {
   mainpage: "/",
@@ -81,12 +82,14 @@ const router = createBrowserRouter([
         <FeedPage />
       </Layout>
     ),
-    children: [
-      {
-        path: ":id",
-        element: <div>123</div>,
-      },
-    ],
+  },
+  {
+    path: `${feed}/:id`,
+    element: (
+      <Layout>
+        <OrderInfo />
+      </Layout>
+    ),
   },
   {
     path: profile,
