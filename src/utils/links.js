@@ -11,6 +11,7 @@ import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
 import IngredientInfo from "../pages/IngredientInfo/IngredientInfo";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import OrderInfo from "../pages/OrderInfo/OrderInfo";
+import ProfileHistoryPage from "../pages/ProfileHistoryPage/ProfileHistoryPage";
 // TODO - ingredientinfo
 const links = {
   mainpage: "/",
@@ -97,6 +98,26 @@ const router = createBrowserRouter([
       <Layout>
         <ProtectedRouteElement>
           <ProfilePage />
+        </ProtectedRouteElement>
+      </Layout>
+    ),
+  },
+  {
+    path: `${profile}/orders`,
+    element: (
+      <Layout>
+        <ProtectedRouteElement>
+          <ProfileHistoryPage />
+        </ProtectedRouteElement>
+      </Layout>
+    ),
+  },
+  {
+    path: `${profile}/orders/:id`,
+    element: (
+      <Layout>
+        <ProtectedRouteElement>
+          <ProfileHistoryPage />
         </ProtectedRouteElement>
       </Layout>
     ),

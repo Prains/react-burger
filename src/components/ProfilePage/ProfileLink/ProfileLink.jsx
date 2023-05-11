@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const ProfileLink = ({ to, children, onClick }) => {
+const ProfileLink = ({ to, children, onClick, end}) => {
   return (
     <NavLink
       to={to}
@@ -8,6 +8,7 @@ const ProfileLink = ({ to, children, onClick }) => {
         `text text_type_main-medium ${isActive ? "" : "text_color_inactive"}`
       }
       onClick={onClick}
+      end
     >
       {children}
     </NavLink>

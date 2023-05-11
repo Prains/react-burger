@@ -1,0 +1,23 @@
+@use "../../utils/mixins.scss" as m;
+
+.navigation {
+  @include m.width(320px);
+  @include m.flex(start, center);
+  flex-direction: column;
+  a {
+    height: 64px;
+  }
+}
+
+.section {
+  @include m.flex(start, center);
+  gap: 60px;
+}
+
+.burgersection {
+  @include m.flex(start, start);
+  flex-direction: column;
+  max-height: 916px;
+  overflow-y: auto;
+  gap: 24px;
+}
