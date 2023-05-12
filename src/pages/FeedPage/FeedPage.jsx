@@ -1,22 +1,20 @@
-import { useState, useEffect } from "react";
 import styles from "./FeedPage.module.scss";
 import OrderBlock from "../../components/FeedPage/OrderBlock/OrderBlock";
+import useSocket from "../../hooks/useSocket";
 
 const FeedPage = () => {
-  const [data, setData] = useState();
-  const doneObjects = data?.orders.filter((obj) => obj.status === "done");
+  const data = useSocket("wss://norma.nomoreparties.space/orders/all");
+  const doneObjects = data?.orders
+    .filter((obj) => obj.status === "done")
+    .slice(0, 10);
+
   const doneObjectIds = doneObjects?.map((obj) => obj.number);
 
-  useEffect(() => {
-    const socket = new WebSocket("wss://norma.nomoreparties.space/orders/all");
-    socket.onmessage = (e) => {
-      const data = JSON.parse(e.data);
-      setData(data);
-    };
-    return () => {
-      socket.close();
-    };
-  }, []);
+  const pendingObjects = data?.orders
+    .filter((obj) => obj.status === "pending")
+    .slice(0, 10);
+
+  const pendingObjectIds = pendingObjects?.map((obj) => obj.number);
 
   return (
     <>
@@ -48,7 +46,16 @@ const FeedPage = () => {
               </article>
               <article>
                 <h4 className="text text_type_main-medium mb-6">В работе:</h4>
-                <ul></ul>
+                {pendingObjectIds.map((item) => {
+                  return (
+                    <li
+                      key={item}
+                      className={styles.li + " text text_type_digits-medium"}
+                    >
+                      {item}
+                    </li>
+                  );
+                })}
               </article>
             </div>
             <article className="mb-15">

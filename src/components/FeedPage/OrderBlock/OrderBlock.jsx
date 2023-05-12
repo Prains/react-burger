@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import OrderModal from "./OrderModal/OrderModal";
 import { links } from "../../../utils/links";
+import PropTypes from 'prop-types';
+import formatDate from "../../../utils/formatDate";
 
 const OrderBlock = ({ order }) => {
   const { name, number, createdAt } = order;
@@ -18,24 +20,6 @@ const OrderBlock = ({ order }) => {
     return total + ingredient.price;
   }, 0);
 
-  function formatDate(input) {
-    const date = new Date(input);
-    const now = new Date();
-    const diffTime = Math.abs(now - date);
-    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
-    const time = date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    if (diffDays === 0) {
-      return "Сегодня, " + time;
-    } else if (diffDays === 1) {
-      return "Вчера, " + time;
-    } else {
-      return diffDays + " Дня(ей) назад, " + time;
-    }
-  }
 
   const date = formatDate(createdAt);
 
@@ -87,6 +71,16 @@ const OrderBlock = ({ order }) => {
       )}
     </>
   );
+};
+
+OrderBlock.propTypes = {
+  order: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  }).isRequired,
 };
 
 export default OrderBlock;

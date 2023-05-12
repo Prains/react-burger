@@ -1,5 +1,6 @@
 import styles from "./OrderDetails.module.scss";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 
 const OrderDetails = ({ ingredients }) => {
   return (
@@ -24,6 +25,17 @@ const OrderDetails = ({ ingredients }) => {
       })}
     </div>
   );
+};
+
+OrderDetails.propTypes = {
+  ingredients: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      image_mobile: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }).isRequired
+  ).isRequired,
 };
 
 export default OrderDetails;

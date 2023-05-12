@@ -12,7 +12,7 @@ import IngredientInfo from "../pages/IngredientInfo/IngredientInfo";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import OrderInfo from "../pages/OrderInfo/OrderInfo";
 import ProfileHistoryPage from "../pages/ProfileHistoryPage/ProfileHistoryPage";
-// TODO - ingredientinfo
+
 const links = {
   mainpage: "/",
   login: "/login",

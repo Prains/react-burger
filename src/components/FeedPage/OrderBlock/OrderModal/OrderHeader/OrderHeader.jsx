@@ -1,5 +1,6 @@
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./OrderHeader.module.scss";
+import PropTypes from "prop-types";
 
 const OrderHeader = ({ number, close, name, status }) => {
   return (
@@ -20,6 +21,13 @@ const OrderHeader = ({ number, close, name, status }) => {
       </h4>
     </>
   );
+};
+
+OrderHeader.propTypes = {
+  number: PropTypes.number.isRequired,
+  close: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  status: PropTypes.oneOf(["done", "pending"]).isRequired,
 };
 
 export default OrderHeader;

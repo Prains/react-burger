@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrderNumber } from "../../../services/actions";
 import done from "../../../images/graphics.svg";
+import token from "../../../utils/token";
 
 const OrderDetails = () => {
   const { burger } = useSelector((state) => state.burger);
@@ -20,7 +21,8 @@ const OrderDetails = () => {
         ...burgerData.map((ingredient) => ingredient._id),
         bunsId,
       ];
-      dispatch(fetchOrderNumber(ingredientsDataId));
+      const refresh = token.getRefreshToken();
+      dispatch(fetchOrderNumber(ingredientsDataId, refresh));
     }
     if (burgerData.length === 0 && bunsId) {
       const ingredientsDataId = [bunsId, bunsId];

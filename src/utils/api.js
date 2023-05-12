@@ -15,7 +15,7 @@ class Api {
       this._checkServerResponce(res)
     );
   }
-  postOrderData(data) {
+  postOrderData(data, token) {
     return fetch(`${this._url}/orders`, {
       method: "post",
       body: JSON.stringify({
@@ -23,6 +23,7 @@ class Api {
       }),
       headers: {
         "Content-Type": "application/json",
+        authorization: token,
       },
     }).then((res) => this._checkServerResponce(res));
   }

@@ -1,26 +1,15 @@
 import styles from "./ProfileHistoryPage.module.scss";
 import ProfileRoutes from "../ProfilePage/ProfileRoutes/ProfileRoutes";
-import { useEffect, useState } from "react";
 import token from "../../utils/token";
 import OrderBlock from "../../components/FeedPage/OrderBlock/OrderBlock";
+import useSocket from "../../hooks/useSocket";
 
 const ProfileHistoryPage = () => {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    let accessToken = token.getAccesToken();
-    accessToken = accessToken.replace(/bearer /gi, "");
-    const socket = new WebSocket(
-      `wss://norma.nomoreparties.space/orders?token=${accessToken}`
-    );
-    socket.onmessage = (e) => {
-      const data = JSON.parse(e.data);
-      setData(data);
-    };
-    return () => {
-      socket.close();
-    };
-  }, []);
+  let accessToken = token.getAccesToken();
+  accessToken = accessToken.replace(/bearer /gi, "");
+  const data = useSocket(
+    `wss://norma.nomoreparties.space/orders?token=${accessToken}`
+  );
 
   return (
     <>
@@ -32,7 +21,7 @@ const ProfileHistoryPage = () => {
           <article className={styles.burgersection}>
             {data.orders === []
               ? data.orders.map((order) => {
-                  return <OrderBlock order={order} />;
+                  return <OrderBlock order={order} key={order._id} />;
                 })
               : "Заказов нема"}
           </article>
