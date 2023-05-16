@@ -12,8 +12,8 @@ import { setUser } from "../../services/reducers/User";
 
 const ProfilePage = () => {
   const { user } = useSelector((state) => state.user);
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user?.name);
+  const [email, setEmail] = useState(user?.email);
   const [password, setPassword] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();

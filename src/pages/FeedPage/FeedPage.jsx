@@ -1,9 +1,11 @@
 import styles from "./FeedPage.module.scss";
 import OrderBlock from "../../components/FeedPage/OrderBlock/OrderBlock";
+import { socketUrl } from "../../utils/types";
 import useSocket from "../../hooks/useSocket";
 
 const FeedPage = () => {
-  const data = useSocket("wss://norma.nomoreparties.space/orders/all");
+  const data = useSocket(socketUrl);
+
   const doneObjects = data?.orders
     .filter((obj) => obj.status === "done")
     .slice(0, 10);

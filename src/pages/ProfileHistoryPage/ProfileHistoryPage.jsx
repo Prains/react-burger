@@ -3,13 +3,12 @@ import ProfileRoutes from "../ProfilePage/ProfileRoutes/ProfileRoutes";
 import token from "../../utils/token";
 import OrderBlock from "../../components/FeedPage/OrderBlock/OrderBlock";
 import useSocket from "../../hooks/useSocket";
+import { socketUrl } from "../../utils/types";
 
 const ProfileHistoryPage = () => {
+  const data = useSocket(socketUrl);
   let accessToken = token.getAccesToken();
   accessToken = accessToken.replace(/bearer /gi, "");
-  const data = useSocket(
-    `wss://norma.nomoreparties.space/orders?token=${accessToken}`
-  );
 
   return (
     <>

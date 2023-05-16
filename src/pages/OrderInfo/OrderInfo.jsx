@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 import styles from "./OrderInfo.module.scss";
 import OrderNumbers from "../../components/FeedPage/OrderBlock/OrderModal/OrderNumbers/OrderNumbers";
 import formatDate from "../../utils/formatDate";
+import { socketUrl } from "../../utils/types";
 import useSocket from "../../hooks/useSocket";
 
 const OrderInfo = () => {
-  const data = useSocket("wss://norma.nomoreparties.space/orders/all");
   const { id } = useParams();
   const { ingredients } = useSelector((state) => state.ingredients);
+  const data = useSocket(socketUrl);
   const order = data?.orders.find((order) => order._id === id);
   const currentIngredients = ingredients.filter((ingredient) =>
     order?.ingredients?.some(

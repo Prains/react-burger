@@ -1,30 +1,20 @@
+"use client";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  websocketReceived,
-  websocketConnected,
-  websocketDisconnected,
-} from "../services/reducers/WebSocket";
+import { wsConnect, wsDisconnect } from "../services/actions";
 
 const useSocket = (url) => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.websocket);
+
   useEffect(() => {
-    const socket = new WebSocket(url);
-    socket.onmessage = (e) => {
-      const data = JSON.parse(e.data);
-      dispatch(websocketReceived(data));
-    };
-    socket.onopen = () => {
-      dispatch(websocketConnected());
-    };
-    socket.onclose = () => {
-      dispatch(websocketDisconnected());
-    };
+    dispatch(wsConnect(url));
+
     return () => {
-      socket.close();
+      wsDisconnect();
     };
   }, [dispatch, url]);
+
   return data;
 };
 

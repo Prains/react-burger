@@ -21,8 +21,8 @@ const OrderDetails = () => {
         ...burgerData.map((ingredient) => ingredient._id),
         bunsId,
       ];
-      const refresh = token.getRefreshToken();
-      dispatch(fetchOrderNumber(ingredientsDataId, refresh));
+      const access = token.getAccesToken();
+      dispatch(fetchOrderNumber(ingredientsDataId, access));
     }
     if (burgerData.length === 0 && bunsId) {
       const ingredientsDataId = [bunsId, bunsId];
