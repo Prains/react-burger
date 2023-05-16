@@ -25,8 +25,9 @@ const OrderDetails = () => {
       dispatch(fetchOrderNumber(ingredientsDataId, access));
     }
     if (burgerData.length === 0 && bunsId) {
+      const access = token.getAccesToken();
       const ingredientsDataId = [bunsId, bunsId];
-      dispatch(fetchOrderNumber(ingredientsDataId));
+      dispatch(fetchOrderNumber(ingredientsDataId, access));
     }
   }, [dispatch]);
 

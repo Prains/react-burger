@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const ProtectedRouteElement = ({ children }) => {
-  const { user } = useSelector((state) => state.user);
+  const { user, status } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!user && status === "resolved") {
       navigate(links.login);
     }
-  }, [user, navigate]);
+  }, [user, navigate, status]);
 
   return <>{children}</>;
 };
