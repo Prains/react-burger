@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import OrderModal from "./OrderModal/OrderModal";
 import { links } from "../../../utils/links";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import formatDate from "../../../utils/formatDate";
 
 const OrderBlock = ({ order }) => {
@@ -19,7 +19,6 @@ const OrderBlock = ({ order }) => {
   const totalPrice = currentIngredients.reduce((total, ingredient) => {
     return total + ingredient.price;
   }, 0);
-
 
   const date = formatDate(createdAt);
 
@@ -41,15 +40,27 @@ const OrderBlock = ({ order }) => {
         <h5 className="text text_type_main-medium">{name}</h5>
         <div className={styles.bottom}>
           <div className={styles.images}>
-            {currentIngredients.map((ingredient) => {
-              return (
-                <img
-                  src={ingredient.image}
-                  className={styles.image}
-                  alt={ingredient.name}
-                  key={ingredient._id}
-                />
-              );
+            {currentIngredients.map((ingredient, index) => {
+              if (index < 5) {
+                return (
+                  <img
+                    src={ingredient.image}
+                    className={styles.image}
+                    alt={ingredient.name}
+                    key={ingredient._id}
+                  />
+                );
+              } else if (index === 5) {
+                return (
+                  <p
+                    className={styles.more + " text text_type_digits-default"}
+                    key={index}
+                  >
+                    +{currentIngredients.length - index - 1}
+                  </p>
+                );
+              }
+              return null; // Прерывает map после вывода первых 5 элементов
             })}
           </div>
           <p className={"text text_type_main-medium " + styles.price}>

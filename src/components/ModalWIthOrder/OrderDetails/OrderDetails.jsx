@@ -24,7 +24,9 @@ const OrderDetails = () => {
     }
     if (burgerData.length === 0 && bunsId) {
       const ingredientsDataId = [bunsId, bunsId];
-      dispatch(fetchOrderNumber(ingredientsDataId));
+      dispatch(
+        fetchOrderNumber(ingredientsDataId)
+      ); /* не понимаю, почему он отправляет два заказа. варианты: react-backend, который react-strict. второй вариант - страница ререндерится после dispatch и юз эффект опять. подскажите пожалуйста, в каком направлении дышать */
     }
   }, []);
 
