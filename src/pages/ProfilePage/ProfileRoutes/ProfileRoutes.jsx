@@ -9,10 +9,10 @@ const ProfileRoutes = () => {
 
   return (
     <>
-      <ProfileLink to={links.profile} end>
+      <ProfileLink to={'/profile'} end>
         Профиль
       </ProfileLink>
-      <ProfileLink to={`${links.profile}/orders`}>История заказов</ProfileLink>
+      <ProfileLink to={`/profile/orders`}>История заказов</ProfileLink>
       <p
         className="text text_type_main-medium text_color_inactive pointer"
         onClick={() => {

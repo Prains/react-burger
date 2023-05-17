@@ -15,8 +15,8 @@ import ProfileHistoryPage from "../pages/ProfileHistoryPage/ProfileHistoryPage";
 
 const links = {
   mainpage: "/",
-  login: "/login",
-  register: "/register",
+  login: "login",
+  register: "register",
   forgot: "forgot-password",
   reset: "reset-password",
   profile: "profile",
