@@ -16,7 +16,8 @@ export const fetchIngredients = createAsyncThunk(
 export const fetchOrderNumber = createAsyncThunk(
   "order/fetchOrderNubmer",
   async function (data) {
-    const responce = await api.postOrderData(data);
+    const access = token.getAccesToken()
+    const responce = await api.postOrderData(data, access);
     return responce;
   }
 );

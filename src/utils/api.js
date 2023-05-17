@@ -18,13 +18,13 @@ class Api {
   postOrderData(data, token) {
     return fetch(`${this._url}/orders`, {
       method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
       body: JSON.stringify({
         ingredients: data,
       }),
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
     }).then((res) => this._checkServerResponce(res));
   }
   makeNewUser(user) {
