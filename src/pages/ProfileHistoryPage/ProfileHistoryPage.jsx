@@ -6,9 +6,10 @@ import useSocket from "../../hooks/useSocket";
 import { socketUrl } from "../../utils/types";
 
 const ProfileHistoryPage = () => {
-  const data = useSocket(socketUrl);
+  const modifiedSocketUrl = socketUrl.replace("/all", "");
   let accessToken = token.getAccesToken();
   accessToken = accessToken.replace(/bearer /gi, "");
+  const data = useSocket(`${modifiedSocketUrl}?token=${accessToken}`);
 
   return (
     <>

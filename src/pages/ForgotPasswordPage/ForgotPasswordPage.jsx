@@ -23,7 +23,7 @@ const ForgotPasswordPage = () => {
             .resetPassword(email)
             .then((res) => {
               alert("Письмо с кодом восстановления успешно отправлено!");
-              navigate(`${links.reset}?from=forgot-password`);
+              navigate(`/${links.reset}?from=forgot-password`);
             })
             .catch((res) => alert("Почта не найдена"));
         }}
@@ -42,7 +42,7 @@ const ForgotPasswordPage = () => {
         />
         <Button htmlType="submit">Восстановить</Button>
       </form>
-      <UtilityText to={links.login} link="Войти">
+      <UtilityText to={`/${links.login}`} link="Войти">
         Вспомнили пароль?
       </UtilityText>
     </section>

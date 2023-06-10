@@ -34,7 +34,7 @@ const ResetPasswordPage = () => {
             .createNewPassword(password, code)
             .then((res) => {
               alert("Пароль изменен успешно!");
-              navigate(links.login);
+              navigate(`/${links.login}`);
             })
             .catch((res) => alert("Неправильный код из письма"));
         }}
@@ -61,7 +61,7 @@ const ResetPasswordPage = () => {
         />
         <Button htmlType="submit">Сохранить</Button>
       </form>
-      <UtilityText to={links.login} link="Войти">
+      <UtilityText to={`/${links.login}`} link="Войти">
         Вспомнили пароль?
       </UtilityText>
     </section>
