@@ -19,7 +19,7 @@ const ProfileHistoryPage = () => {
             <ProfileRoutes />
           </article>
           <article className={styles.burgersection}>
-            {data.orders === []
+            {data.orders.length > 0
               ? data.orders.map((order) => {
                   return <OrderBlock order={order} key={order._id} />;
                 })
