@@ -9,7 +9,7 @@ const ProtectedRouteElement = ({ children }) => {
 
   useEffect(() => {
     if (!user && status === "resolved") {
-      navigate(links.login);
+      navigate(`/${links.login}`);
     }
   }, [user, navigate, status]);
 

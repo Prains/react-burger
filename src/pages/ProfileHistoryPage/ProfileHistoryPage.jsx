@@ -8,7 +8,9 @@ import { socketUrl } from "../../utils/types";
 const ProfileHistoryPage = () => {
   const modifiedSocketUrl = socketUrl.replace("/all", "");
   let accessToken = token.getAccesToken();
-  accessToken = accessToken.replace(/bearer /gi, "");
+  if (accessToken) {
+    accessToken = accessToken.replace(/bearer /gi, "");
+  }
   const data = useSocket(`${modifiedSocketUrl}?token=${accessToken}`);
 
   return (
