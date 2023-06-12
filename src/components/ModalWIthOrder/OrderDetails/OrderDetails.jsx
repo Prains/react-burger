@@ -26,12 +26,12 @@ const OrderDetails = () => {
       const ingredientsDataId = [bunsId, bunsId];
       dispatch(fetchOrderNumber(ingredientsDataId));
     }
-  }, [dispatch]);
+  }, [dispatch, bunsId, burgerData]);
 
   return (
     <div className={styles.box}>
       <p className={`text text_type_digits-large mt-10 mb-8 ${styles.glow}`}>
-        {order ? order.order.number : ""}
+        {order ? order.order.number : "loading"}
       </p>
       <p className="text text_type_main-medium mb-15">идентификатор заказа</p>
       <img src={done} alt="изображение загрузки" className="mb-15" />

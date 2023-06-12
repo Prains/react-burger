@@ -9,7 +9,7 @@ const ProtectedUnauthorizedRouteElement = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      navigate(links.profile);
+      navigate(`/${links.profile}`);
     }
   }, [user, navigate]);
 

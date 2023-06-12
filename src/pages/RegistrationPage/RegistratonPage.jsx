@@ -34,11 +34,13 @@ const RegistrationPage = () => {
           api
             .makeNewUser(user)
             .then((res) => {
+              console.log(res);
               alert("Успех!");
               dispatch(setUser(res.user));
               setRegistered(true);
             })
-            .catch(() => {
+            .catch((res) => {
+              console.log(res);
               alert(`Пользователь с такими данными уже существует`);
             });
         }}
@@ -77,7 +79,7 @@ const RegistrationPage = () => {
         />
         <Button htmlType="submit">Зарегистрироваться</Button>
       </form>
-      <UtilityText to={links.login} link={"Войти"}>
+      <UtilityText to={`/${links.login}`} link={"Войти"}>
         Уже зарегистрированы?
       </UtilityText>
     </section>

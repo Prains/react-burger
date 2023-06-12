@@ -1,0 +1,16 @@
+@use "../../../../../utils/mixins.scss" as m;
+
+.header {
+  @include m.flex(center, space-between);
+}
+
+.uppertitle {
+  @include m.flex(start, start);
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 60px;
+}
+
+.titlespan {
+  color: #00cccc;
+}

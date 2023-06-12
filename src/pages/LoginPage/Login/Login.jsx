@@ -69,10 +69,10 @@ const Login = () => {
         <Button htmlType="submit">Войти</Button>
       </form>
       <article className={styles.article}>
-        <UtilityText to={links.register} link={"Зарегистрироваться"}>
+        <UtilityText to={`/${links.register}`} link={"Зарегистрироваться"}>
           Вы - новый пользователь?
         </UtilityText>
-        <UtilityText to={links.forgot} link={"Восстановить пароль"}>
+        <UtilityText to={`/${links.forgot}`} link={"Восстановить пароль"}>
           Забыли пароль?
         </UtilityText>
       </article>

@@ -11,8 +11,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchIngredients(setIsLoading));
     dispatch(fetchCurrentUser());
+    dispatch(fetchIngredients(setIsLoading));
   }, [dispatch]);
 
   if (isLoading) {

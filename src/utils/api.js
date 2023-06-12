@@ -15,15 +15,16 @@ class Api {
       this._checkServerResponce(res)
     );
   }
-  postOrderData(data) {
+  postOrderData(data, token) {
     return fetch(`${this._url}/orders`, {
       method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
       body: JSON.stringify({
         ingredients: data,
       }),
-      headers: {
-        "Content-Type": "application/json",
-      },
     }).then((res) => this._checkServerResponce(res));
   }
   makeNewUser(user) {

@@ -9,16 +9,19 @@ import ForgotPasswordPage from "../pages/ForgotPasswordPage/ForgotPasswordPage";
 import ProtectedUnauthorizedRouteElement from "../components/ProtectedRouteElement/ProtectedUnauthorizedRouteElement";
 import ResetPasswordPage from "../pages/ResetPasswordPage/ResetPasswordPage";
 import IngredientInfo from "../pages/IngredientInfo/IngredientInfo";
-// TODO - ingredientinfo
+import FeedPage from "../pages/FeedPage/FeedPage";
+import OrderInfo from "../pages/OrderInfo/OrderInfo";
+import ProfileHistoryPage from "../pages/ProfileHistoryPage/ProfileHistoryPage";
+
 const links = {
   mainpage: "/",
-  login: "/login",
-  register: "/register",
-  forgot: "/forgot-password",
-  reset: "/reset-password",
-  profile: "/profile",
-  ingredients: "/ingredients",
-  feed: "/feed",
+  login: "login",
+  register: "register",
+  forgot: "forgot-password",
+  reset: "reset-password",
+  profile: "profile",
+  ingredients: "ingredients",
+  feed: "feed",
 };
 
 const { mainpage, login, register, forgot, reset, ingredients, feed, profile } =
@@ -26,78 +29,82 @@ const { mainpage, login, register, forgot, reset, ingredients, feed, profile } =
 
 const router = createBrowserRouter([
   {
-    path: mainpage,
-    element: (
-      <Layout>
-        <Mainpage />
-      </Layout>
-    ),
-  },
-  {
-    path: login,
-    element: (
-      <Layout>
-        <ProtectedUnauthorizedRouteElement>
-          <Login />
-        </ProtectedUnauthorizedRouteElement>
-      </Layout>
-    ),
-  },
-  {
-    path: register,
-    element: (
-      <Layout>
-        <ProtectedUnauthorizedRouteElement>
-          <RegistrationPage />
-        </ProtectedUnauthorizedRouteElement>
-      </Layout>
-    ),
-  },
-  {
-    path: forgot,
-    element: (
-      <Layout>
-        <ProtectedUnauthorizedRouteElement>
-          <ForgotPasswordPage />
-        </ProtectedUnauthorizedRouteElement>
-      </Layout>
-    ),
-  },
-  {
-    path: reset,
-    element: (
-      <Layout>
-        <ProtectedUnauthorizedRouteElement>
-          <ResetPasswordPage />
-        </ProtectedUnauthorizedRouteElement>
-      </Layout>
-    ),
-  },
-  {
-    path: feed,
-    element: (
-      <Layout>
-        <div>feed</div>
-      </Layout>
-    ),
-  },
-  {
-    path: profile,
-    element: (
-      <Layout>
-        <ProtectedRouteElement>
-          <ProfilePage />
-        </ProtectedRouteElement>
-      </Layout>
-    ),
-  },
-  {
-    path: `${ingredients}/:id`,
-    element: (
-      <Layout>
-        <IngredientInfo />
-      </Layout>
-    ),
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Mainpage />,
+      },
+      {
+        path: "login",
+        element: (
+          <ProtectedUnauthorizedRouteElement>
+            <Login />
+          </ProtectedUnauthorizedRouteElement>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+          <ProtectedUnauthorizedRouteElement>
+            <RegistrationPage />
+          </ProtectedUnauthorizedRouteElement>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectedRouteElement>
+            <ProfilePage />
+          </ProtectedRouteElement>
+        ),
+      },
+      {
+        path: "profile/orders",
+        element: (
+          <ProtectedRouteElement>
+            <ProfileHistoryPage />
+          </ProtectedRouteElement>
+        ),
+      },
+      {
+        path: forgot,
+        element: (
+          <ProtectedUnauthorizedRouteElement>
+            <ForgotPasswordPage />
+          </ProtectedUnauthorizedRouteElement>
+        ),
+      },
+      {
+        path: reset,
+        element: (
+          <ProtectedUnauthorizedRouteElement>
+            <ResetPasswordPage />
+          </ProtectedUnauthorizedRouteElement>
+        ),
+      },
+      {
+        path: feed,
+        element: <FeedPage />,
+      },
+      {
+        path: `${feed}/:id`,
+        element: <OrderInfo />,
+      },
+      {
+        path: `${profile}/orders/:id`,
+        element: (
+          <ProtectedRouteElement>
+            <IngredientInfo />
+          </ProtectedRouteElement>
+        ),
+      },
+      {
+        path: `${ingredients}/:id`,
+        element: <IngredientInfo />,
+      },
+    ],
   },
 ]);
 
