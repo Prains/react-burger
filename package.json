@@ -65,6 +65,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "@types/uuid": "^9.0.2",
+    "gh-pages": "^5.0.0",
+    "typedoc": "^0.24.8"
   }
 }
