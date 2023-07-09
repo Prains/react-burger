@@ -5,6 +5,7 @@ import burgerReducer from "./reducers/Burger";
 import userReducer from "./reducers/User";
 import socketReducer from "./reducers/WebSocket";
 import { websocketMiddleware } from "./actions";
+import { ThunkAction, Action } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
@@ -20,5 +21,11 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 
 export default store;

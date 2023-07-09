@@ -1,26 +1,20 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./OrderBlock.module.scss";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks/useReduxHooks";
 import { useState } from "react";
 import OrderModal from "./OrderModal/OrderModal";
 import { links } from "../../../utils/links";
 import formatDate from "../../../utils/formatDate";
-import { Ingredient } from "../../../utils/types";
+import { Ingredient, Order } from "../../../utils/types";
+import { RootState } from '../../../services/store';
 
 interface OrderBlockProps {
-  order: {
-    name: string;
-    number: number;
-    createdAt: string;
-    _id: string;
-    ingredients: string[];
-    status: string;
-  };
+  order: Order;
 }
 
 const OrderBlock: React.FC<OrderBlockProps> = ({ order }) => {
   const { name, number, createdAt } = order;
-  const { ingredients } = useSelector((state: any) => state.ingredients);
+  const { ingredients } = useAppSelector((state: RootState) => state.ingredients);
   const [orderPopupShown, setOrderPopupShown] = useState(false);
   const currentIngredients = ingredients.filter((ingredient: Ingredient) =>
     order.ingredients.some(

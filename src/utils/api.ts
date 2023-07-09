@@ -1,21 +1,26 @@
 import { baseUrl } from "./types";
 
 class Api {
-  constructor(url) {
+  private _url: string;
+
+  constructor(url: string) {
     this._url = url;
   }
-  _checkServerResponce(res) {
+
+  private _checkServerResponce(res: Response) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${(res.status, res.ok)}`);
   }
-  getIngredientsData() {
+
+  public getIngredientsData() {
     return fetch(`${this._url}/ingredients`).then((res) =>
       this._checkServerResponce(res)
     );
   }
-  postOrderData(data, token) {
+
+  public postOrderData(data: any, token: string) {
     return fetch(`${this._url}/orders`, {
       method: "post",
       headers: {
@@ -27,7 +32,8 @@ class Api {
       }),
     }).then((res) => this._checkServerResponce(res));
   }
-  makeNewUser(user) {
+
+  public makeNewUser(user: any) {
     return fetch(`${this._url}/auth/register`, {
       method: "post",
       body: JSON.stringify(user),
@@ -36,7 +42,8 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
-  authorizeUser(user) {
+
+  public authorizeUser(user: any) {
     return fetch(`${this._url}/auth/login`, {
       method: "post",
       body: JSON.stringify(user),
@@ -45,7 +52,8 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
-  checkUser(token) {
+
+  public checkUser(token: string) {
     return fetch(`${this._url}/auth/user`, {
       method: "get",
       headers: {
@@ -53,7 +61,8 @@ class Api {
       },
     }).then((res) => this._checkServerResponce(res));
   }
-  editUserData(token, user) {
+
+  public editUserData(token: string, user: any) {
     return fetch(`${this._url}/auth/user`, {
       method: "PATCH",
       headers: {
@@ -63,7 +72,8 @@ class Api {
       body: JSON.stringify(user),
     }).then((res) => this._checkServerResponce(res));
   }
-  logOut(refreshToken) {
+
+  public logOut(refreshToken: string) {
     return fetch(`${this._url}/auth/logout`, {
       method: "post",
       headers: {
@@ -74,7 +84,8 @@ class Api {
       }),
     }).then((res) => this._checkServerResponce(res));
   }
-  refreshToken(token) {
+
+  public refreshToken(token: string) {
     return fetch(`${this._url}/auth/token`, {
       method: "post",
       headers: {
@@ -85,7 +96,8 @@ class Api {
       }),
     }).then((res) => this._checkServerResponce(res));
   }
-  resetPassword(email) {
+
+  public resetPassword(email: string) {
     return fetch(`${this._url}/password-reset`, {
       method: "post",
       headers: {
@@ -96,7 +108,8 @@ class Api {
       }),
     }).then((res) => this._checkServerResponce(res));
   }
-  createNewPassword(password, code) {
+
+  public createNewPassword(password: string, code: string) {
     return fetch(`${this._url}/password-reset/reset`, {
       method: "post",
       headers: {

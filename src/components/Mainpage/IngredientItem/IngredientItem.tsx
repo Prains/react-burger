@@ -5,10 +5,11 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./IngredientItem.module.scss";
 import { useDrag } from "react-dnd";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks/useReduxHooks";
 import { links } from "../../../utils/links";
 import { Ingredient } from "../../../utils/types";
 import ModalWithIngredient from "../../ModalWithIngredient/ModalWithIngredient";
+import { RootState } from '../../../services/store';
 
 interface IngredientItemProps {
   data: Ingredient;
@@ -16,10 +17,10 @@ interface IngredientItemProps {
 
 const IngredientItem: React.FC<IngredientItemProps> = ({ data }) => {
   const [isModalShown, setModalShown] = useState(false);
-  const { burger } = useSelector((state: any) => state.burger);
-  const burgerItem = burger.find((item: any) => item._id === data._id);
+  const { burger } = useAppSelector((state: RootState) => state.burger);
+  const burgerItem = burger.find((item: Ingredient) => item._id === data._id);
   const countItemsWithId = burger.filter(
-    (item: any) => item._id === data._id
+    (item: Ingredient) => item._id === data._id
   ).length;
   const count = data.type === "bun" ? 2 : countItemsWithId;
   const [{ isDragging }, drag] = useDrag(() => ({

@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 import { links } from "../../utils/links";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { RootState } from '../../services/store';
 
 const ProtectedRouteElement = ({ children }: { children: React.ReactNode }) => {
-  const { user, status } = useSelector((state: any) => state.user);
+  const { user, status } = useAppSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {

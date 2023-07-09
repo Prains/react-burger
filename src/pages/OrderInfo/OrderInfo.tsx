@@ -1,25 +1,26 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 import styles from "./OrderInfo.module.scss";
 import OrderDetails from "../../components/FeedPage/OrderBlock/OrderModal/OrderDetails/OrderDetails";
 import OrderNumbers from "../../components/FeedPage/OrderBlock/OrderModal/OrderNumbers/OrderNumbers";
 import formatDate from "../../utils/formatDate";
-import { socketUrl } from "../../utils/types";
+import { Order, socketUrl, Ingredient } from '../../utils/types';
 import useSocket from "../../hooks/useSocket";
+import { RootState } from '../../services/store';
 
 const OrderInfo: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { ingredients } = useSelector((state: any) => state.ingredients);
+  const { ingredients } = useAppSelector((state: RootState) => state.ingredients);
   const data = useSocket(socketUrl);
-  const order = data?.orders.find((order: any) => order._id === id);
-  const currentIngredients = ingredients.filter((ingredient: any) =>
+  const order = data?.orders.find((order: Order) => order._id === id);
+  const currentIngredients = ingredients.filter((ingredient: Ingredient) =>
     order?.ingredients?.some(
-      (orderIngredient: any) => orderIngredient === ingredient._id
+      (orderIngredient: string) => orderIngredient === ingredient._id
     )
   );
   const totalPrice = currentIngredients?.reduce(
-    (total: any, ingredient: any) => {
+    (total: number, ingredient: Ingredient) => {
       return total + ingredient.price;
     },
     0

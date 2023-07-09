@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchCurrentUser } from "../actions";
 
+export type TUser = {
+  name: string;
+  email: string;
+};
+
 interface UserState {
-  user: string | null;
+  user: TUser | null;
   status: "loading" | "resolved" | null;
   error: string | null;
 }
@@ -17,7 +22,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<string>) => {
+    setUser: (state, action: PayloadAction<TUser>) => {
       state.user = action.payload;
     },
   },

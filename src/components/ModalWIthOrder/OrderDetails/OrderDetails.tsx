@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrderNumber } from "../../../services/actions";
 import done from "../../../images/graphics.svg";
 import { RootState, AppDispatch } from "../../../services/store";
+import { useAppSelector } from "../../../hooks/useReduxHooks";
+import { Ingredient } from "../../../utils/types";
 
 const OrderDetails: React.FC = () => {
   const { burger } = useSelector((state: RootState) => state.burger);
-  const { order }: { order: any } = useSelector(
-    (state: RootState) => state.order
-  );
+  const { order } = useAppSelector((state: RootState) => state.order);
   const dispatch = useDispatch<AppDispatch>();
-  const bunsData: any = burger.filter((bun: any) => bun.type === "bun");
+  const bunsData: Ingredient[] = burger.filter((bun: Ingredient) => bun.type === "bun");
+
   const burgerData = burger.filter(
-    (ingredient: any) => ingredient.type !== "bun"
+    (ingredient: Ingredient) => ingredient.type !== "bun"
   );
 
   const bunsId = bunsData[0]?._id;
@@ -22,7 +23,7 @@ const OrderDetails: React.FC = () => {
     if (burgerData.length !== 0) {
       const ingredientsDataId = [
         bunsId,
-        ...burgerData.map((ingredient: any) => ingredient._id),
+        ...burgerData.map((ingredient: Ingredient) => ingredient._id),
         bunsId,
       ];
       dispatch(fetchOrderNumber(ingredientsDataId));
@@ -36,7 +37,7 @@ const OrderDetails: React.FC = () => {
   return (
     <div className={styles.box}>
       <p className={`text text_type_digits-large mt-10 mb-8 ${styles.glow}`}>
-        {order ? order.order.number : "loading"}
+        {order ? order.number : "loading"}
       </p>
       <p className="text text_type_main-medium mb-15">идентификатор заказа</p>
       <img src={done} alt="изображение загрузки" className="mb-15" />

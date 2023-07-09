@@ -1,14 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 import { useParams } from "react-router-dom";
 import IngredientDetails from "../../components/ModalWithIngredient/IngredientDetails/IngredientDetails";
 import styles from "./IngredientInfo.module.scss";
+import { RootState } from '../../services/store';
+import { Ingredient } from '../../utils/types';
 
 const IngredientInfo: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { ingredients } = useSelector((state: any) => state.ingredients);
+  const { ingredients } = useAppSelector((state: RootState) => state.ingredients);
   const currentIngredient = ingredients.filter(
-    (ingredient: any) => ingredient._id === id
+    (ingredient: Ingredient) => ingredient._id === id
   );
 
   return (

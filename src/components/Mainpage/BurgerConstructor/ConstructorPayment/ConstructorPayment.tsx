@@ -4,12 +4,13 @@ import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TUser } from "../../../../services/reducers/User";
 
 interface ConstructorPaymentProps {
   totalPrice: number;
   setOrderVisibility: (visible: boolean) => void;
   visibility: boolean;
-  user: any;
+  user: TUser | null;
 }
 
 const ConstructorPayment: React.FC<ConstructorPaymentProps> = ({

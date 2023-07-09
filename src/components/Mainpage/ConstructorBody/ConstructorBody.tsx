@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./ConstructorBody.module.scss";
 import PropTypes from "prop-types";
 import ConstructorItem from "./ConstructorItem/ConstructorItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useReduxHooks";
 import { setBurger } from "../../../services/reducers/Burger";
 import { Ingredient } from "../../../utils/types";
+import { RootState } from '../../../services/store';
 
 interface ConstructorBodyProps {
   ingredientsData: Ingredient[];
@@ -13,13 +14,13 @@ interface ConstructorBodyProps {
 const ConstructorBody: React.FC<ConstructorBodyProps> = ({
   ingredientsData,
 }) => {
-  const { burger } = useSelector((state: any) => state.burger);
-  const dispatch = useDispatch();
+  const { burger } = useAppSelector((state: RootState) => state.burger);
+  const dispatch = useAppDispatch();
 
   const moveCard = (dragIndex: number, hoverIndex: number, key: string) => {
-    const noBun = burger.filter((ingredient: any) => ingredient.type !== "bun");
-    const bun = burger.filter((ingredient: any) => ingredient.type === "bun");
-    const dragCard = noBun.filter((ingredient: any) => ingredient.uuid === key);
+    const noBun = burger.filter((ingredient: Ingredient) => ingredient.type !== "bun");
+    const bun = burger.filter((ingredient: Ingredient) => ingredient.type === "bun");
+    const dragCard = noBun.filter((ingredient: Ingredient) => ingredient.uuid === key);
     if (dragCard) {
       const newCards = [...noBun];
       newCards.splice(dragIndex, 1);

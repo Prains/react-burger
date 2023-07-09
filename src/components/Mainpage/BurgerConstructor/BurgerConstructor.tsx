@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./BurgerConstructor.module.scss";
@@ -11,18 +11,21 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorPayment from "./ConstructorPayment/ConstructorPayment";
 import { setBurger } from "../../../services/reducers/Burger";
+import { useAppSelector, useAppDispatch } from '../../../hooks/useReduxHooks';
+import { RootState } from '../../../services/store';
+import { Ingredient } from '../../../utils/types';
 
 const BurgerConstructor: React.FC = () => {
   const [orderVisibility, setOrderVisibility] = useState(false);
-  const burger = useSelector((state: any) => state.burger.burger);
-  const { user } = useSelector((state: any) => state.user);
-  const bun = burger.find((item: any) => item.type === "bun");
-  const ingredients = burger.filter((item: any) => item.type !== "bun");
+  const burger = useAppSelector((state: RootState) => state.burger.burger);
+  const { user } = useAppSelector((state: RootState) => state.user);
+  const bun = burger.find((item: Ingredient) => item.type === "bun");
+  const ingredients = burger.filter((item: Ingredient) => item.type !== "bun");
   const totalPrice = burger.reduce(
     (acc: any, curr: any) => acc + curr.price,
     0
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const visibility = burger.length !== 0;
 
@@ -31,7 +34,7 @@ const BurgerConstructor: React.FC = () => {
     drop: ({ item }: { item: any }) => {
       const uuid = uuidv4();
       if (item.type === "bun") {
-        const bunIndex = burger.findIndex((b: any) => b.type === "bun");
+        const bunIndex = burger.findIndex((b: Ingredient) => b.type === "bun");
         if (bunIndex !== -1) {
           const updatedBun = {
             ...item,

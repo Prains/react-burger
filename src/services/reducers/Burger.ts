@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Ingredient } from '../../utils/types';
 
 interface BurgerState {
-  burger: string[];
+  burger: Ingredient[];
 }
 
 const initialState: BurgerState = {
@@ -12,7 +13,7 @@ const BurgerSlice = createSlice({
   name: "burger",
   initialState,
   reducers: {
-    setBurger: (state, action: PayloadAction<string[]>) => {
+    setBurger: (state, action: PayloadAction<Ingredient[]>) => {
       state.burger = action.payload;
     },
   },

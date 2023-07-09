@@ -1,17 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
 import ItemsSection from "../ItemsSection/ItemsSection";
 import Tabs from "../Tabs/Tabs";
 import styles from "./BurgerIngredients.module.scss";
+import { Ingredient } from '../../../utils/types';
+import { RootState } from '../../../services/store';
+import { useAppSelector } from '../../../hooks/useReduxHooks';
 
 const BurgerIngredients: React.FC = () => {
-  const { ingredients } = useSelector((state: any) => state.ingredients);
+  const { ingredients } = useAppSelector((state: RootState) => state.ingredients);
 
   const {
     bun: bunsData,
     sauce: sauceData,
     main: flavoursData,
-  } = ingredients.reduce((acc: any, ingredient: any) => {
+  } = ingredients.reduce((acc: any, ingredient: Ingredient) => {
     acc[ingredient.type] = [...(acc[ingredient.type] || []), ingredient];
     return acc;
   }, {});

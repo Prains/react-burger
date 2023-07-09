@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchIngredients } from "../actions";
+import { Ingredient } from "../../utils/types";
 
 interface IngredientsState {
-  ingredients: string[];
+  ingredients: Ingredient[];
   status: "loading" | "resolved" | null;
   error: string | null;
 }
@@ -17,7 +18,7 @@ const ingredientsSlice = createSlice({
   name: "ingredients",
   initialState,
   reducers: {
-    setIngredients: (state, action: PayloadAction<string[]>) => {
+    setIngredients: (state, action: PayloadAction<Ingredient[]>) => {
       state.ingredients = action.payload;
     },
   },

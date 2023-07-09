@@ -1,30 +1,30 @@
 import React from "react";
 import styles from "./FeedPage.module.scss";
 import OrderBlock from "../../components/FeedPage/OrderBlock/OrderBlock";
-import { socketUrl } from "../../utils/types";
+import { socketUrl, Order } from '../../utils/types';
 import useSocket from "../../hooks/useSocket";
 
 const FeedPage: React.FC = () => {
   const data = useSocket(socketUrl);
 
   const doneObjects = data?.orders
-    .filter((obj: any) => obj.status === "done")
+    .filter((obj: Order) => obj.status === "done")
     .slice(0, 10);
 
-  const doneObjectIds = doneObjects?.map((obj: any) => obj.number);
+  const doneObjectIds = doneObjects?.map((obj: Order) => obj.number);
 
   const pendingObjects = data?.orders
-    .filter((obj: any) => obj.status === "pending")
+    .filter((obj: Order) => obj.status === "pending")
     .slice(0, 10);
 
-  const pendingObjectIds = pendingObjects?.map((obj: any) => obj.number);
+  const pendingObjectIds = pendingObjects?.map((obj: Order) => obj.number);
 
   return (
     <>
       {data && (
         <section className={styles.section}>
           <div className={styles.order}>
-            {data.orders.map((order: any) => {
+            {data.orders.map((order: Order) => {
               return <OrderBlock order={order} key={order._id} />;
             })}
           </div>
@@ -35,7 +35,7 @@ const FeedPage: React.FC = () => {
                   Готовы:
                 </h4>
                 <ul className={styles.ul}>
-                  {doneObjectIds?.map((item: any) => {
+                  {doneObjectIds?.map((item: string) => {
                     return (
                       <li
                         key={item}
@@ -49,7 +49,7 @@ const FeedPage: React.FC = () => {
               </article>
               <article>
                 <h4 className="text text_type_main-medium mb-6">В работе:</h4>
-                {pendingObjectIds?.map((item: any) => {
+                {pendingObjectIds?.map((item: string) => {
                   return (
                     <li
                       key={item}

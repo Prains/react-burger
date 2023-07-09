@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchOrderNumber } from "../actions";
+import { Order } from "../../utils/types";
 
 interface OrderState {
-  order: string | null;
+  order: Order | null;
   status: "loading" | "resolved" | null;
   error: string | null;
 }
@@ -17,7 +18,7 @@ const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    setOrder: (state, action: PayloadAction<string>) => {
+    setOrder: (state, action: PayloadAction<Order>) => {
       state.order = action.payload;
     },
   },

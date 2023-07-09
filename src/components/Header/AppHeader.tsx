@@ -8,10 +8,11 @@ import styles from "./AppHeader.module.scss";
 import HeaderBox from "../HeaderBox/HeaderBox";
 import { links } from "../../utils/links";
 import HeaderLogo from "./HeaderLogo/HeaderLogo";
-import { useSelector } from "react-redux";
+import { useAppSelector } from '../../hooks/useReduxHooks';
+import { RootState } from '../../services/store';
 
 const Header: React.FC = () => {
-  const { user } = useSelector((state: any) => state.user);
+  const { user } = useAppSelector((state: RootState) => state.user);
   const [profileLink, setProfileLink] = useState<string>("");
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Header: React.FC = () => {
       <nav className={styles.nav}>
         <div>
           <HeaderBox to={links.mainpage}>
-            {({ isActive }: { isActive: any }) => (
+            {({ isActive }: { isActive: boolean }) => (
               <>
                 <BurgerIcon type={isActive ? "primary" : "secondary"} />
                 Конструктор
@@ -35,7 +36,7 @@ const Header: React.FC = () => {
             )}
           </HeaderBox>
           <HeaderBox to={links.feed}>
-            {({ isActive }: { isActive: any }) => (
+            {({ isActive }: { isActive: boolean }) => (
               <>
                 <ListIcon type={isActive ? "primary" : "secondary"} />
                 Лента заказов
@@ -45,7 +46,7 @@ const Header: React.FC = () => {
         </div>
         <HeaderLogo />
         <HeaderBox to={profileLink}>
-          {({ isActive }: { isActive: any }) => (
+          {({ isActive }: { isActive: boolean }) => (
             <>
               <ProfileIcon type={isActive ? "primary" : "secondary"} />
               Личный кабинет

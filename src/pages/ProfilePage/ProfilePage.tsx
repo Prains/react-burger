@@ -1,5 +1,4 @@
 import React, { useState, FormEvent } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import {
   Button,
   Input,
@@ -9,9 +8,11 @@ import api from "../../utils/api";
 import token from "../../utils/token";
 import { setUser } from "../../services/reducers/User";
 import ProfileRoutes from "./ProfileRoutes/ProfileRoutes";
+import { useAppSelector, useAppDispatch } from "../../hooks/useReduxHooks";
+import { RootState } from '../../services/store';
 
 const ProfilePage: React.FC = () => {
-  const { user } = useSelector((state: any) => state.user);
+  const { user } = useAppSelector((state: RootState) => state.user);
   if (!user) return null;
   // eslint-disable-next-line
   const [name, setName] = useState<string>(user?.name);
@@ -22,7 +23,7 @@ const ProfilePage: React.FC = () => {
   // eslint-disable-next-line
   const [isEditing, setIsEditing] = useState<boolean>(false);
   // eslint-disable-next-line
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleReset = (e: FormEvent) => {
     e.preventDefault();

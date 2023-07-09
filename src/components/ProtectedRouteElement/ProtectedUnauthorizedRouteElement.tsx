@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { links } from "../../utils/links";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/useReduxHooks";
+import { RootState } from '../../services/store';
 
 const ProtectedUnauthorizedRouteElement = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { user } = useSelector((state: any) => state.user);
+  const { user } = useAppSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {

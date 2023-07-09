@@ -4,7 +4,7 @@ import ProfileRoutes from "../ProfilePage/ProfileRoutes/ProfileRoutes";
 import token from "../../utils/token";
 import OrderBlock from "../../components/FeedPage/OrderBlock/OrderBlock";
 import useSocket from "../../hooks/useSocket";
-import { socketUrl } from "../../utils/types";
+import { Order, socketUrl } from "../../utils/types";
 
 const ProfileHistoryPage: React.FC = () => {
   const modifiedSocketUrl = socketUrl.replace("/all", "");
@@ -23,7 +23,7 @@ const ProfileHistoryPage: React.FC = () => {
           </article>
           <article className={styles.burgersection}>
             {data.orders.length > 0 ? (
-              data.orders.map((order: any) => {
+              data.orders.map((order: Order) => {
                 return <OrderBlock order={order} key={order._id} />;
               })
             ) : (

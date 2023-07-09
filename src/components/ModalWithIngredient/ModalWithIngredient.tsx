@@ -4,7 +4,7 @@ import IngredientDetails from "./IngredientDetails/IngredientDetails";
 import { Ingredient } from "../../utils/types";
 
 type ModalWithIngredientProps = Ingredient & {
-  close: any;
+  close: Function;
 };
 
 const ModalWithIngredient: React.FC<ModalWithIngredientProps> = (props) => {

@@ -4,10 +4,11 @@ import {
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag, useDrop } from "react-dnd";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/useReduxHooks";
 import { setBurger } from "../../../../services/reducers/Burger";
 import { Ingredient } from "../../../../utils/types";
 import styles from "./ConstructorItem.module.scss";
+import { RootState } from '../../../../services/store';
 
 interface ConstructorItemProps {
   ingredient: Ingredient;
@@ -22,8 +23,8 @@ const ConstructorItem: React.FC<ConstructorItemProps> = ({
   moveCardHandler,
   uuid,
 }) => {
-  const { burger } = useSelector((state: any) => state.burger);
-  const dispatch = useDispatch();
+  const { burger } = useAppSelector((state: RootState) => state.burger);
+  const dispatch = useAppDispatch();
   const [{ isDragging }, drag] = useDrag({
     type: "ingredientActive",
     item: { uuid, index },
@@ -87,7 +88,7 @@ const ConstructorItem: React.FC<ConstructorItemProps> = ({
       style={{ opacity: isDragging ? 0.5 : 1 }}
       onClick={() => {
         const copiedStateArray = burger.filter(
-          (item: any) => item !== ingredient
+          (item: Ingredient) => item !== ingredient
         );
         dispatch(setBurger(copiedStateArray));
       }}

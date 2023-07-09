@@ -11,6 +11,16 @@ export interface Ingredient {
   _id: string;
   type: "bun" | "main" | "sauce";
   uuid?: any;
+  id?: any
+}
+
+export interface Order {
+  name: string;
+  number: number;
+  createdAt: string;
+  _id: string;
+  ingredients: string[];
+  status: string;
 }
 
 export const baseUrl = "https://norma.nomoreparties.space/api";
